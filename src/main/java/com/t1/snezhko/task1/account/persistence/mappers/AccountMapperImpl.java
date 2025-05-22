@@ -14,6 +14,7 @@ class AccountMapperImpl implements AccountMapper{
     @Override
     public AccountResponse toDto(AccountEntity entity) {
         return AccountResponse.builder()
+                .id(entity.getId())
                 .accountType(entity.getAccountType())
                 .amount(entity.getAmount())
                 .client(clientMapper.toDto(entity.getClient()))

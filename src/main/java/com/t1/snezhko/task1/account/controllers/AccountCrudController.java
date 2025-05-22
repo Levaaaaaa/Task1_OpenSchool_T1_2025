@@ -3,6 +3,7 @@ package com.t1.snezhko.task1.account.controllers;
 import com.t1.snezhko.task1.account.dto.AccountRequest;
 import com.t1.snezhko.task1.account.dto.AccountResponse;
 import com.t1.snezhko.task1.account.services.AccountCrudService;
+import com.t1.snezhko.task1.aop.annotations.LogException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("/accounts")
+@LogException
 public class AccountCrudController {
     @Autowired
     private AccountCrudService accountCrudService;

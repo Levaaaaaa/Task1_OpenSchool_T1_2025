@@ -15,6 +15,7 @@ import java.util.UUID;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
 public class AccountResponse {
+    Long id;
     ClientDTO client;
     AccountType accountType;
     BigDecimal amount;

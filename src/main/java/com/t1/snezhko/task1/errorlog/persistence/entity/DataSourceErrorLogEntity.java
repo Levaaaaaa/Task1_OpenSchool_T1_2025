@@ -1,4 +1,4 @@
-package com.t1.snezhko.task1.errorlog;
+package com.t1.snezhko.task1.errorlog.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,6 +11,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 public class DataSourceErrorLogEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

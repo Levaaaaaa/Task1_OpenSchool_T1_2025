@@ -1,4 +1,4 @@
-package com.t1.snezhko.task1.transaction.entity;
+package com.t1.snezhko.task1.transaction.persistence.entity;
 
 import com.t1.snezhko.task1.account.persistence.entity.AccountEntity;
 import jakarta.persistence.*;
@@ -18,6 +18,7 @@ import static jakarta.persistence.CascadeType.ALL;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 public class TransactionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
