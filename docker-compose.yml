@@ -1,0 +1,34 @@
+volumes:
+  pg_t1:
+
+services:
+  t1-db-host:
+    image: postgres
+    restart: always
+    volumes:
+      - pg_t1:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=t1
+      - POSTGRES_PASSWORD=t1
+      - POSTGRES_DB=t1_db
+      - PGDATA=/var/lib/postgresql/data
+    ports:
+      - "5000:5432"
+    healthcheck:
+      test: /usr/bin/pg_isready
+      interval: 5s
+      timeout: 10s
+      retries: 120
+
+  t1-task1-app:
+    restart: always
+    build: .
+    depends_on:
+      t1-db-host:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://t1-db-host:5432/t1_db
+      - SPRING_DATASOURCE_USERNAME=t1
+      - SPRING_DATASOURCE_PASSWORD=t1
