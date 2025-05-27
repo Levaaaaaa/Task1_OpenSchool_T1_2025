@@ -151,4 +151,20 @@
 
         </sql>
     </changeSet>
+    <changeSet id="6" author="Leu">
+        <createTable tableName="time_limit_exceed_log">
+            <column name="id" type="SERIAL" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="time" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="method_signature" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="method_start_time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
