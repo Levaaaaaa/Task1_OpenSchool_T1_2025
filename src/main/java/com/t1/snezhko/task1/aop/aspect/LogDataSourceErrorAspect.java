@@ -1,12 +1,11 @@
 package com.t1.snezhko.task1.aop.aspect;
 
-import com.t1.snezhko.task1.errorlog.persistence.entity.DataSourceErrorLogEntity;
-import com.t1.snezhko.task1.errorlog.persistence.repository.DataSourceErrorLogRepository;
+import com.t1.snezhko.task1.core.errorlog.entity.DataSourceErrorLogEntity;
+import com.t1.snezhko.task1.core.errorlog.repository.DataSourceErrorLogRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
