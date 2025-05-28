@@ -6,7 +6,6 @@ import com.t1.snezhko.task1.account.services.AccountCrudService;
 import com.t1.snezhko.task1.aop.annotations.LogException;
 import com.t1.snezhko.task1.aop.annotations.Metric;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

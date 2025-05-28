@@ -38,6 +38,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.liquibase/liquibase-core
 	implementation 'org.liquibase:liquibase-core:4.31.1'
 
+	// https://mvnrepository.com/artifact/com.github.ben-manes.caffeine/caffeine
+	implementation 'com.github.ben-manes.caffeine:caffeine:3.2.0'
+
 	// https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
 	runtimeOnly 'org.aspectj:aspectjweaver:1.9.24'
 
