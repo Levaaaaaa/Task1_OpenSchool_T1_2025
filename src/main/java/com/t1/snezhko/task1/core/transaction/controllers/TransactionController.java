@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/transactions")
@@ -32,13 +33,13 @@ public class TransactionController {
 
     @GetMapping("/{id}")
     @Metric
-    public ResponseEntity<TransactionResponse> getTransactionById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(transactionService.getTransactionById(id));
+    public ResponseEntity<TransactionResponse> getTransactionById(@PathVariable("id") String id) {
+        return ResponseEntity.ok(transactionService.getTransactionById(UUID.fromString(id)));
     }
 
     @DeleteMapping("/{id}")
     @Metric
-    public ResponseEntity<TransactionResponse> deleteTransaction(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(transactionService.deleteTransaction(id));
+    public ResponseEntity<TransactionResponse> deleteTransaction(@PathVariable("id") String id) {
+        return ResponseEntity.ok(transactionService.deleteTransaction(UUID.fromString(id)));
     }
 }

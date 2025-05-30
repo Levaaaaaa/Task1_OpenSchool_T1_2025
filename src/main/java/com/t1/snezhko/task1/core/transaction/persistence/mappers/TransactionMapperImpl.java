@@ -22,10 +22,11 @@ class TransactionMapperImpl implements TransactionMapper{
     @Override
     public TransactionResponse toDto(TransactionEntity entity) {
         return TransactionResponse.builder()
-                .id(entity.getId())
+                .transactionId(entity.getTransactionId())
                 .consumer(accountMapper.toDto(entity.getConsumer()))
                 .producer(accountMapper.toDto(entity.getProducer()))
                 .amount(entity.getAmount())
+                .status(entity.getStatus())
                 .transactionDate(entity.getTransactionDate())
                 .build();
     }

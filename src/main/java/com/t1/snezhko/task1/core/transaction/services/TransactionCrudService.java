@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public interface TransactionCrudService {
@@ -17,8 +18,8 @@ public interface TransactionCrudService {
     public List<TransactionResponse> getAllTransactions();
 
     @Cached
-    public TransactionResponse getTransactionById(Long id);
+    public TransactionResponse getTransactionById(UUID id);
 
     @Transactional
-    public TransactionResponse deleteTransaction(Long id);
+    public TransactionResponse deleteTransaction(UUID id);
 }

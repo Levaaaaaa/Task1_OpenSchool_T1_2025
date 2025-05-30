@@ -3,6 +3,7 @@ package com.t1.snezhko.task1.core.transaction.services;
 import com.t1.snezhko.task1.core.account.persistence.entity.AccountEntity;
 import com.t1.snezhko.task1.core.account.persistence.repositories.AccountRepository;
 import com.t1.snezhko.task1.aop.annotations.Cached;
+import com.t1.snezhko.task1.core.transaction.TransactionStatus;
 import com.t1.snezhko.task1.core.transaction.dto.TransactionRequest;
 import com.t1.snezhko.task1.core.transaction.dto.TransactionResponse;
 import com.t1.snezhko.task1.core.transaction.persistence.entity.TransactionEntity;
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 class TransactionCrudServiceImpl implements TransactionCrudService{
@@ -58,6 +60,8 @@ class TransactionCrudServiceImpl implements TransactionCrudService{
         accountRepository.save(consumer);
 
         transactionEntity.setTransactionDate(LocalDateTime.now());
+        transactionEntity.setStatus(TransactionStatus.ACCEPTED);
+        transactionEntity.setTransactionId(UUID.randomUUID());
         transactionRepository.save(transactionEntity);
 
         return transactionMapper.toDto(transactionEntity);
@@ -70,8 +74,8 @@ class TransactionCrudServiceImpl implements TransactionCrudService{
     }
 
     @Cached
-    public TransactionResponse getTransactionById(Long id) {
-        Optional<TransactionEntity> optional = transactionRepository.findById(id);
+    public TransactionResponse getTransactionById(UUID id) {
+        Optional<TransactionEntity> optional = transactionRepository.findByTransactionId(id);
         if (optional.isEmpty()) {
             throw new EntityNotFoundException("Transaction not found!");
         }
@@ -80,8 +84,8 @@ class TransactionCrudServiceImpl implements TransactionCrudService{
 
     //delete
     @Transactional
-    public TransactionResponse deleteTransaction(Long id) {
-        Optional<TransactionEntity> optional = transactionRepository.findById(id);
+    public TransactionResponse deleteTransaction(UUID id) {
+        Optional<TransactionEntity> optional = transactionRepository.findByTransactionId(id);
         if (optional.isEmpty()) {
             throw new EntityNotFoundException("Transaction not found!");
         }

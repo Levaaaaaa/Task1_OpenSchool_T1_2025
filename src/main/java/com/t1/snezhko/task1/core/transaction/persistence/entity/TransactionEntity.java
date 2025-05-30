@@ -1,6 +1,7 @@
 package com.t1.snezhko.task1.core.transaction.persistence.entity;
 
 import com.t1.snezhko.task1.core.account.persistence.entity.AccountEntity;
+import com.t1.snezhko.task1.core.transaction.TransactionStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.Check;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import static jakarta.persistence.CascadeType.ALL;
 
@@ -39,4 +41,11 @@ public class TransactionEntity {
 
     @Column(name = "transaction_date", nullable = false)
     LocalDateTime transactionDate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "transaction_status", nullable = false)
+    TransactionStatus status;
+
+    @Column(name = "transaction_id", nullable = false, unique = true)
+    UUID transactionId;
 }
