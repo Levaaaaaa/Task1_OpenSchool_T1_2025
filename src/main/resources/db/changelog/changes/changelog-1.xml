@@ -42,8 +42,26 @@
             <column name="amount" type="NUMERIC(19,2)">
                 <constraints nullable="false"/>
             </column>
+            <column name="account_status" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_id" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="frozen_amount" type="NUMERIC(19,2)">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
 
+        <sql>
+            ALTER TABLE accounts
+            ADD CONSTRAINT ck_amount_non_negative CHECK (amount >= 0);
+        </sql>
+
+        <sql>
+            ALTER TABLE accounts
+            ADD CONSTRAINT ck_frozen_amount_non_negative CHECK (frozen_amount >= 0);
+        </sql>
         <addForeignKeyConstraint
                 baseTableName="accounts"
                 baseColumnNames="client_id"
@@ -84,10 +102,10 @@
             </column>
         </createTable>
 
-<!--        <addCheckConstraint-->
-<!--                tableName="transactions"-->
-<!--                constraintName="chk_transactions_amount_positive"-->
-<!--                checkCondition="amount > 0"/>-->
+        <sql>
+            ALTER TABLE transactions
+            ADD CONSTRAINT ck_transaction_amount_positive CHECK (amount > 0);
+        </sql>
 
         <addForeignKeyConstraint
                 baseTableName="transactions"

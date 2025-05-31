@@ -1,23 +1,24 @@
 package com.t1.snezhko.task1.core.account.services;
 
-import com.t1.snezhko.task1.core.account.dto.AccountRequest;
+import com.t1.snezhko.task1.core.account.dto.CreateAccountRequest;
 import com.t1.snezhko.task1.core.account.dto.AccountResponse;
 import com.t1.snezhko.task1.aop.annotations.Cached;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public interface AccountCrudService {
-    public AccountResponse createAccount(AccountRequest request);
+    public AccountResponse createAccount(CreateAccountRequest request);
 
     @Cached
     public List<AccountResponse> getAllAccounts();
 
     @Cached
-    public AccountResponse getAccountById(Long id);
+    public AccountResponse getAccountById(UUID id);
 
-    public AccountResponse updateAccountById(Long id, AccountRequest request);
+    public AccountResponse updateAccountById(UUID id, CreateAccountRequest request);
 
-    public AccountResponse deleteAccountById(Long id);
+    public AccountResponse deleteAccountById(UUID id);
 }

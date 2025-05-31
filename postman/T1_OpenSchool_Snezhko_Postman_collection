@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"clientId\": \"11111111-1111-1111-1111-111111111111\",\r\n  \"accountType\": \"DEBIT\",\r\n  \"amount\": 1000.00\r\n}\r\n",
+							"raw": "{\r\n  \"clientId\": \"11111111-1111-1111-1111-111111111111\",\r\n  \"accountType\": \"DEBIT\",\r\n  \"amount\": 1002.00\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -55,19 +55,19 @@
 					"response": []
 				},
 				{
-					"name": "get account with id 1",
+					"name": "get account with id 0",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/accounts/1",
+							"raw": "localhost:8080/accounts/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"accounts",
-								"1"
+								"00000000-0000-0000-0000-000000000000"
 							]
 						}
 					},
@@ -124,7 +124,18 @@
 					"name": "get account with not existing id",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/accounts/100",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"accounts",
+								"100"
+							]
+						}
 					},
 					"response": []
 				}
@@ -184,14 +195,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/transactions/2",
+							"raw": "localhost:8080/transactions/11111111-1111-1111-1111-111111111111",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"transactions",
-								"2"
+								"11111111-1111-1111-1111-111111111111"
 							]
 						}
 					},

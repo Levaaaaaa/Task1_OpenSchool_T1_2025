@@ -1,6 +1,7 @@
 package com.t1.snezhko.task1.core.account.services;
 
-import com.t1.snezhko.task1.core.account.dto.AccountRequest;
+import com.t1.snezhko.task1.core.account.AccountStatus;
+import com.t1.snezhko.task1.core.account.dto.CreateAccountRequest;
 import com.t1.snezhko.task1.core.account.dto.AccountResponse;
 import com.t1.snezhko.task1.core.account.persistence.entity.AccountEntity;
 import com.t1.snezhko.task1.core.account.persistence.mappers.AccountMapper;
@@ -12,8 +13,10 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 class AccountCrudServiceImpl implements AccountCrudService{
@@ -27,7 +30,7 @@ class AccountCrudServiceImpl implements AccountCrudService{
     private AccountMapper accountMapper;
 
     //create
-    public AccountResponse createAccount(AccountRequest request) {
+    public AccountResponse createAccount(CreateAccountRequest request) {
         Optional<ClientEntity> optional = clientRepository.findByClientId(request.getClientId());
         if (optional.isEmpty()) {
             throw new EntityNotFoundException("Client not exists!");
@@ -35,6 +38,9 @@ class AccountCrudServiceImpl implements AccountCrudService{
         ClientEntity clientEntity = optional.get();
         AccountEntity accountEntity = accountMapper.fromDto(request);
         accountEntity.setClient(clientEntity);
+        accountEntity.setStatus(AccountStatus.OPEN);
+        accountEntity.setFrozenAmount(BigDecimal.ZERO);
+        accountEntity.setAccountId(UUID.randomUUID());
         accountRepository.save(accountEntity);
         return accountMapper.toDto(accountEntity);
      }
@@ -45,21 +51,21 @@ class AccountCrudServiceImpl implements AccountCrudService{
     }
 
     @Cached
-    public AccountResponse getAccountById(Long id) {
-        Optional<AccountEntity> optional = accountRepository.findById(id);
+    public AccountResponse getAccountById(UUID id) {
+        Optional<AccountEntity> optional = accountRepository.findByAccountId(id);
         if (optional.isPresent()) {
             return accountMapper.toDto(optional.get());
         }
         throw new EntityNotFoundException("Account not found!");
     }
     //update
-    public AccountResponse updateAccountById(Long id, AccountRequest request) {
+    public AccountResponse updateAccountById(UUID id, CreateAccountRequest request) {
         Optional<ClientEntity> optional = clientRepository.findByClientId(request.getClientId());
         if (optional.isEmpty()) {
             throw new EntityNotFoundException("Client not exists!");
         }
         ClientEntity clientEntity = optional.get();
-        Optional<AccountEntity> optionalAccount = accountRepository.findById(id);
+        Optional<AccountEntity> optionalAccount = accountRepository.findByAccountId(id);
         if (optionalAccount.isEmpty()) {
             throw new EntityNotFoundException("Account not exists!");
         }
@@ -71,8 +77,8 @@ class AccountCrudServiceImpl implements AccountCrudService{
         return accountMapper.toDto(accountEntity);
     }
     //delete
-    public AccountResponse deleteAccountById(Long id) {
-        Optional<AccountEntity> optional = accountRepository.findById(id);
+    public AccountResponse deleteAccountById(UUID id) {
+        Optional<AccountEntity> optional = accountRepository.findByAccountId(id);
         if (optional.isEmpty()) {
             throw new EntityNotFoundException("Account not exists!");
         }

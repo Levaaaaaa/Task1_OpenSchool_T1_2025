@@ -1,6 +1,6 @@
 package com.t1.snezhko.task1.core.account.controllers;
 
-import com.t1.snezhko.task1.core.account.dto.AccountRequest;
+import com.t1.snezhko.task1.core.account.dto.CreateAccountRequest;
 import com.t1.snezhko.task1.core.account.dto.AccountResponse;
 import com.t1.snezhko.task1.core.account.services.AccountCrudService;
 import com.t1.snezhko.task1.aop.annotations.LogException;
@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.OK;
 
@@ -22,7 +23,7 @@ public class AccountCrudController {
 
     @PostMapping
     @Metric
-    public ResponseEntity<AccountResponse> create(@RequestBody AccountRequest request) {
+    public ResponseEntity<AccountResponse> create(@RequestBody CreateAccountRequest request) {
         return ResponseEntity.status(OK).body(accountCrudService.createAccount(request));
     }
 
@@ -34,19 +35,19 @@ public class AccountCrudController {
 
     @GetMapping("/{id}")
     @Metric
-    public ResponseEntity<AccountResponse> getAccountById(@PathVariable("id") Long id) {
-        return ResponseEntity.status(OK).body(accountCrudService.getAccountById(id));
+    public ResponseEntity<AccountResponse> getAccountById(@PathVariable("id") String id) {
+        return ResponseEntity.status(OK).body(accountCrudService.getAccountById(UUID.fromString(id)));
     }
 
     @PutMapping("/{id}")
     @Metric
-    public ResponseEntity<AccountResponse> updateAccountById(@PathVariable("id") Long id, @RequestBody AccountRequest request) {
-        return ResponseEntity.status(OK).body(accountCrudService.updateAccountById(id, request));
+    public ResponseEntity<AccountResponse> updateAccountById(@PathVariable("id") String id, @RequestBody CreateAccountRequest request) {
+        return ResponseEntity.status(OK).body(accountCrudService.updateAccountById(UUID.fromString(id), request));
     }
 
     @DeleteMapping("/{id}")
     @Metric
-    public ResponseEntity<AccountResponse> deleteAccountById(@PathVariable("id") Long id) {
-        return ResponseEntity.status(OK).body(accountCrudService.deleteAccountById(id));
+    public ResponseEntity<AccountResponse> deleteAccountById(@PathVariable("id") String id) {
+        return ResponseEntity.status(OK).body(accountCrudService.deleteAccountById(UUID.fromString(id)));
     }
 }

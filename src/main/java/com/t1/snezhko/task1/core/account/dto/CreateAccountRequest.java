@@ -12,7 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AccountRequest {
+public class CreateAccountRequest {
     UUID clientId;
     AccountType accountType;
     BigDecimal amount;
