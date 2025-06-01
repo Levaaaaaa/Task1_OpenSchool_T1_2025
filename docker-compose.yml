@@ -20,9 +20,9 @@ services:
       timeout: 10s
       retries: 120
 
-  t1-task1-app:
+  t1-service-module1:
     restart: always
-    build: .
+    build: ./module1/
     depends_on:
       t1-db-host:
         condition: service_healthy
@@ -33,6 +33,11 @@ services:
       - SPRING_DATASOURCE_USERNAME=t1
       - SPRING_DATASOURCE_PASSWORD=t1
 
+  t1-service-module2:
+    restart: always
+    build: ./module2/
+    ports:
+      - "8081:8080"
   zookeeper_t1:
     image: confluentinc/cp-zookeeper:5.5.0
     hostname: zookeeper_t1

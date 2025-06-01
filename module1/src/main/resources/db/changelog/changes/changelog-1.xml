@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+          http://www.liquibase.org/xml/ns/dbchangelog
+          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!-- ChangeSet for table 'clients' -->
+    <changeSet id="1" author="Leu">
+        <createTable tableName="clients">
+            <column name="id" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patronymic" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="client_id" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- ChangeSet for table 'accounts' -->
+    <changeSet id="2" author="Leu">
+        <createTable tableName="accounts">
+            <column name="id" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="client_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="NUMERIC(19,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_status" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_id" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="frozen_amount" type="NUMERIC(19,2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <sql>
+            ALTER TABLE accounts
+            ADD CONSTRAINT ck_amount_non_negative CHECK (amount >= 0);
+        </sql>
+
+        <sql>
+            ALTER TABLE accounts
+            ADD CONSTRAINT ck_frozen_amount_non_negative CHECK (frozen_amount >= 0);
+        </sql>
+        <addForeignKeyConstraint
+                baseTableName="accounts"
+                baseColumnNames="client_id"
+                constraintName="fk_accounts_client_id"
+                referencedTableName="clients"
+                referencedColumnNames="client_id"
+                deleteCascade="true"
+        />
+
+        <createIndex indexName="idx_accounts_client_id" tableName="accounts">
+            <column name="client_id"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- ChangeSet for table 'transactions' -->
+    <changeSet id="3" author="Leu">
+        <createTable tableName="transactions">
+            <column name="id" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="producer" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="consumer" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="NUMERIC(19,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transaction_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transaction_status" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transaction_id" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <sql>
+            ALTER TABLE transactions
+            ADD CONSTRAINT ck_transaction_amount_positive CHECK (amount > 0);
+        </sql>
+
+        <addForeignKeyConstraint
+                baseTableName="transactions"
+                baseColumnNames="producer"
+                constraintName="fk_transactions_producer"
+                referencedTableName="accounts"
+                referencedColumnNames="id"
+                deleteCascade="true"
+        />
+
+        <addForeignKeyConstraint
+                baseTableName="transactions"
+                baseColumnNames="consumer"
+                constraintName="fk_transactions_consumer"
+                referencedTableName="accounts"
+                referencedColumnNames="id"
+                deleteCascade="true"
+        />
+
+        <createIndex indexName="idx_transactions_producer" tableName="transactions">
+            <column name="producer"/>
+        </createIndex>
+
+        <createIndex indexName="idx_transactions_consumer" tableName="transactions">
+            <column name="consumer"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- ChangeSet for table 'datasource_error_logs' -->
+    <changeSet id="4" author="Leu">
+        <createTable tableName="datasource_error_logs">
+            <column name="id" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="stack_trace" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="method_signature" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="6" author="Leu">
+        <createTable tableName="time_limit_exceed_log">
+            <column name="id" type="SERIAL" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="time" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="method_signature" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="method_start_time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
