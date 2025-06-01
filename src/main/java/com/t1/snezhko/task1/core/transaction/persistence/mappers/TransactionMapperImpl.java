@@ -1,7 +1,7 @@
 package com.t1.snezhko.task1.core.transaction.persistence.mappers;
 
 import com.t1.snezhko.task1.core.account.persistence.mappers.AccountMapper;
-import com.t1.snezhko.task1.core.transaction.dto.TransactionRequest;
+import com.t1.snezhko.task1.core.transaction.dto.CreateTransactionRequest;
 import com.t1.snezhko.task1.core.transaction.dto.TransactionResponse;
 import com.t1.snezhko.task1.core.transaction.persistence.entity.TransactionEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ class TransactionMapperImpl implements TransactionMapper{
     private AccountMapper accountMapper;
 
     @Override
-    public TransactionEntity fromDto(TransactionRequest request) {
+    public TransactionEntity fromDto(CreateTransactionRequest request) {
         return TransactionEntity.builder()
                 .amount(request.getAmount())
                 .build();

@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -11,8 +12,8 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-public class TransactionRequest {
-    Long producer;
-    Long consumer;
+public class CreateTransactionRequest {
+    UUID producer;
+    UUID consumer;
     BigDecimal amount;
 }

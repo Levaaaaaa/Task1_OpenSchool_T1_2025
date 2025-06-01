@@ -2,7 +2,7 @@ package com.t1.snezhko.task1.core.transaction.controllers;
 
 import com.t1.snezhko.task1.aop.annotations.LogException;
 import com.t1.snezhko.task1.aop.annotations.Metric;
-import com.t1.snezhko.task1.core.transaction.dto.TransactionRequest;
+import com.t1.snezhko.task1.core.transaction.dto.CreateTransactionRequest;
 import com.t1.snezhko.task1.core.transaction.dto.TransactionResponse;
 import com.t1.snezhko.task1.core.transaction.services.TransactionCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class TransactionController {
 
     @PostMapping
     @Metric
-    public ResponseEntity<TransactionResponse> createTransaction(@RequestBody TransactionRequest request) {
+    public ResponseEntity<TransactionResponse> createTransaction(@RequestBody CreateTransactionRequest request) {
         return ResponseEntity.ok(transactionService.createTransaction(request));
     }
 

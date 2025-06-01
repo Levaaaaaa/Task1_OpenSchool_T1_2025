@@ -1,10 +1,11 @@
 package com.t1.snezhko.task1.core.transaction.services;
 
+import com.t1.snezhko.task1.core.account.AccountStatus;
 import com.t1.snezhko.task1.core.account.persistence.entity.AccountEntity;
 import com.t1.snezhko.task1.core.account.persistence.repositories.AccountRepository;
 import com.t1.snezhko.task1.aop.annotations.Cached;
 import com.t1.snezhko.task1.core.transaction.TransactionStatus;
-import com.t1.snezhko.task1.core.transaction.dto.TransactionRequest;
+import com.t1.snezhko.task1.core.transaction.dto.CreateTransactionRequest;
 import com.t1.snezhko.task1.core.transaction.dto.TransactionResponse;
 import com.t1.snezhko.task1.core.transaction.persistence.entity.TransactionEntity;
 import com.t1.snezhko.task1.core.transaction.persistence.mappers.TransactionMapper;
@@ -32,13 +33,13 @@ class TransactionCrudServiceImpl implements TransactionCrudService{
 
     //create
     @Transactional
-    public TransactionResponse createTransaction(TransactionRequest request) {
+    public TransactionResponse createTransaction(CreateTransactionRequest request) {
         TransactionEntity transactionEntity = transactionMapper.fromDto(request);
-        Optional<AccountEntity> optionalConsumer = accountRepository.findById(request.getConsumer());
+        Optional<AccountEntity> optionalConsumer = accountRepository.findByAccountId(request.getConsumer());
         if (optionalConsumer.isEmpty()) {
             throw new EntityNotFoundException("Consumer not found!");
         }
-        Optional<AccountEntity> optionalProducer = accountRepository.findById(request.getProducer());
+        Optional<AccountEntity> optionalProducer = accountRepository.findByAccountId(request.getProducer());
         if (optionalProducer.isEmpty()) {
             throw new EntityNotFoundException("Producer not found!");
         }
@@ -48,6 +49,14 @@ class TransactionCrudServiceImpl implements TransactionCrudService{
 
         if (producer.getAmount().compareTo(request.getAmount()) < 0) {
             throw new IllegalStateException("Insufficient funds!");
+        }
+
+        if (!producer.getStatus().equals(AccountStatus.OPEN)) {
+            throw new IllegalStateException("Producer's account is unavailable");
+        }
+
+        if (!consumer.getStatus().equals(AccountStatus.OPEN)) {
+            throw new IllegalStateException("Consumer's account is unavailable");
         }
 
         producer.setAmount(producer.getAmount().subtract(request.getAmount()));
@@ -60,12 +69,13 @@ class TransactionCrudServiceImpl implements TransactionCrudService{
         accountRepository.save(consumer);
 
         transactionEntity.setTransactionDate(LocalDateTime.now());
-        transactionEntity.setStatus(TransactionStatus.ACCEPTED);
+        transactionEntity.setStatus(TransactionStatus.REQUESTED);
         transactionEntity.setTransactionId(UUID.randomUUID());
         transactionRepository.save(transactionEntity);
 
         return transactionMapper.toDto(transactionEntity);
     }
+
 
     //read
     @Cached
