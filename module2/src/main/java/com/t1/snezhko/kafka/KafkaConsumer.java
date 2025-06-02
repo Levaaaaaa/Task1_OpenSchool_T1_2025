@@ -30,7 +30,7 @@ public class KafkaConsumer {
     private ObjectMapper objectMapper;
 
     private static final String TOPIC_NAME = "t1_demo_transaction_accept";
-    private static final String GROUP_ID = "t1-consumer-group";
+    private static final String GROUP_ID = "t1-module2-consumer-group";
 
     private static final String TRANSACTION_RESULT_TOPIC = "t1_demo_transaction_result";
 

@@ -6,11 +6,8 @@ import com.t1.snezhko.accept_service.reject.CheckRejectTransactionService;
 import com.t1.snezhko.core.transaction.TransactionStatus;
 import com.t1.snezhko.core.transaction.dto.AcceptTransactionRequest;
 import com.t1.snezhko.core.transaction.dto.TransactionResponse;
-import com.t1.snezhko.kafka.KafkaMessageProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.support.KafkaHeaders;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -56,6 +53,7 @@ class AcceptTransactionServiceImpl implements AcceptTransactionService {
         return TransactionResponse.builder()
                 .transactionId(request.getTransactionId())
                 .producer(request.getAccountId())
+                .transactionAmount(request.getTransactionAmount())
                 .build();
     }
 

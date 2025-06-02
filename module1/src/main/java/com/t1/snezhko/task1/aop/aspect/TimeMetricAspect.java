@@ -1,7 +1,7 @@
 package com.t1.snezhko.task1.aop.aspect;
 
 import com.t1.snezhko.task1.kafka.KafkaSendException;
-import com.t1.snezhko.task1.kafka.KafkaMessageProducer;
+import com.t1.snezhko.task1.kafka.KafkaProducer;
 import com.t1.snezhko.task1.core.measure.repositories.TimeLimitExceedLogRepository;
 import com.t1.snezhko.task1.core.measure.entities.TimeLimitExceedLogEntity;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +28,7 @@ public class TimeMetricAspect {
     private TimeLimitExceedLogRepository repository;
 
     @Autowired
-    private KafkaMessageProducer kafkaProducer;
+    private KafkaProducer kafkaProducer;
 
     @Around("@annotation(com.t1.snezhko.task1.aop.annotations.Metric)")
     public Object measureMethodExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {

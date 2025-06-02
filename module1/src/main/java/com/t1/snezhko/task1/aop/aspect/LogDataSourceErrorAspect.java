@@ -3,7 +3,7 @@ package com.t1.snezhko.task1.aop.aspect;
 import com.t1.snezhko.task1.core.errorlog.entity.DataSourceErrorLogEntity;
 import com.t1.snezhko.task1.core.errorlog.repository.DataSourceErrorLogRepository;
 import com.t1.snezhko.task1.kafka.KafkaSendException;
-import com.t1.snezhko.task1.kafka.KafkaMessageProducer;
+import com.t1.snezhko.task1.kafka.KafkaProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -21,7 +21,7 @@ public class LogDataSourceErrorAspect {
     private DataSourceErrorLogRepository repository;
 
     @Autowired
-    private KafkaMessageProducer kafkaMessageProducer;
+    private KafkaProducer kafkaProducer;
 
 //    @AfterThrowing(pointcut = "execution(* com.t1.snezhko.task1..*(..))", throwing = "ex")
     @AfterThrowing(pointcut = "@within(com.t1.snezhko.task1.aop.annotations.LogException)", throwing = "ex")
@@ -30,7 +30,7 @@ public class LogDataSourceErrorAspect {
         String topic = "t1_demo_metrics";
         log.info(message);
         try {
-            kafkaMessageProducer.send(MessageBuilder
+            kafkaProducer.send(MessageBuilder
                     .withPayload(message)
                     .setHeader(KafkaHeaders.TOPIC, topic)
                     .setHeader("ERROR_TYPE", "DATA_SOURCE")

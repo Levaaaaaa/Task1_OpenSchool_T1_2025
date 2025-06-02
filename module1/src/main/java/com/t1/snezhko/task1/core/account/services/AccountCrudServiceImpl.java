@@ -76,6 +76,7 @@ class AccountCrudServiceImpl implements AccountCrudService{
         accountRepository.save(accountEntity);
         return accountMapper.toDto(accountEntity);
     }
+
     //delete
     public AccountResponse deleteAccountById(UUID id) {
         Optional<AccountEntity> optional = accountRepository.findByAccountId(id);
@@ -84,6 +85,42 @@ class AccountCrudServiceImpl implements AccountCrudService{
         }
         AccountEntity accountEntity = optional.get();
         accountRepository.delete(accountEntity);
+        return accountMapper.toDto(accountEntity);
+    }
+
+    @Override
+    public AccountResponse addAmount(UUID id, BigDecimal amountToAdd) {
+        Optional<AccountEntity> optional = accountRepository.findByAccountId(id);
+        if (optional.isEmpty()) {
+            throw new EntityNotFoundException("Account not exists!");
+        }
+        AccountEntity accountEntity = optional.get();
+        accountEntity.setAmount(accountEntity.getAmount().add(amountToAdd));
+        accountRepository.save(accountEntity);
+        return accountMapper.toDto(accountEntity);
+    }
+
+    @Override
+    public AccountResponse addFrozenAmount(UUID id, BigDecimal amountToAdd) {
+        Optional<AccountEntity> optional = accountRepository.findByAccountId(id);
+        if (optional.isEmpty()) {
+            throw new EntityNotFoundException("Account not exists!");
+        }
+        AccountEntity accountEntity = optional.get();
+        accountEntity.setFrozenAmount(accountEntity.getFrozenAmount().add(amountToAdd));
+        accountRepository.save(accountEntity);
+        return accountMapper.toDto(accountEntity);
+    }
+
+    @Override
+    public AccountResponse updateStatus(UUID id, AccountStatus newStatus) {
+        Optional<AccountEntity> optional = accountRepository.findByAccountId(id);
+        if (optional.isEmpty()) {
+            throw new EntityNotFoundException("Account not exists!");
+        }
+        AccountEntity accountEntity = optional.get();
+        accountEntity.setStatus(newStatus);
+        accountRepository.save(accountEntity);
         return accountMapper.toDto(accountEntity);
     }
 }

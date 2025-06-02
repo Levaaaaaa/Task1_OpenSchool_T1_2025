@@ -1,4 +1,4 @@
-package com.t1.snezhko.task1.core.transaction.dto;
+package com.t1.snezhko.task1.core.transaction.dto.check_status;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AcceptTransactionRequest {
+public class CheckTransactionStatusRequest {
     UUID clientId;
     UUID accountId;
     UUID transactionId;

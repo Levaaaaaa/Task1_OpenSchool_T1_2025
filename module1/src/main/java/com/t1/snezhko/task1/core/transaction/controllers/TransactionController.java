@@ -4,7 +4,7 @@ import com.t1.snezhko.task1.aop.annotations.LogException;
 import com.t1.snezhko.task1.aop.annotations.Metric;
 import com.t1.snezhko.task1.core.transaction.dto.CreateTransactionRequest;
 import com.t1.snezhko.task1.core.transaction.dto.TransactionResponse;
-import com.t1.snezhko.task1.core.transaction.services.TransactionCrudService;
+import com.t1.snezhko.task1.core.transaction.services.crud.TransactionCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

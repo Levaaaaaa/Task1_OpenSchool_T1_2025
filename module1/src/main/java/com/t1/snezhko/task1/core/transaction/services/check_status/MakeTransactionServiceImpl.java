@@ -1,12 +1,12 @@
-package com.t1.snezhko.task1.core.transaction.services.accept_transaction;
+package com.t1.snezhko.task1.core.transaction.services.check_status;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.t1.snezhko.task1.core.transaction.dto.AcceptTransactionRequest;
 import com.t1.snezhko.task1.core.transaction.dto.CreateTransactionRequest;
+import com.t1.snezhko.task1.core.transaction.dto.check_status.CheckTransactionStatusRequest;
 import com.t1.snezhko.task1.core.transaction.dto.TransactionResponse;
 import com.t1.snezhko.task1.core.transaction.dto.serializers.AcceptTransactionRequestSerializer;
-import com.t1.snezhko.task1.core.transaction.services.TransactionCrudService;
-import com.t1.snezhko.task1.kafka.KafkaMessageProducer;
+import com.t1.snezhko.task1.core.transaction.services.crud.TransactionCrudService;
+import com.t1.snezhko.task1.kafka.KafkaProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -15,24 +15,24 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-class AcceptTransactionServiceImpl implements AcceptTransactionService{
+class MakeTransactionServiceImpl implements MakeTransactionService {
     @Autowired
     private AcceptTransactionRequestSerializer acceptRequestSerializer;
 
     @Autowired
-    private KafkaMessageProducer kafkaProducer;
+    private KafkaProducer kafkaProducer;
 
     @Autowired
     private TransactionCrudService transactionCrudService;
 
     private static final String TRANSACTION_ACCEPT_TOPIC = "t1_demo_transaction_accept";
 
-    public TransactionResponse acceptTransaction(CreateTransactionRequest request) throws JsonProcessingException{
+    public TransactionResponse makeTransaction(CreateTransactionRequest request) throws JsonProcessingException{
         //create entity in db
         TransactionResponse response = transactionCrudService.createTransaction(request);
 
         sendAcceptRequestToKafka(
-                AcceptTransactionRequest.builder()
+                CheckTransactionStatusRequest.builder()
                         .transactionId(response.getTransactionId()
                         )
                         .transactionAmount(response.getAmount())
@@ -45,7 +45,7 @@ class AcceptTransactionServiceImpl implements AcceptTransactionService{
         return response;
     }
 
-    private void sendAcceptRequestToKafka(AcceptTransactionRequest request) throws JsonProcessingException {
+    private void sendAcceptRequestToKafka(CheckTransactionStatusRequest request) throws JsonProcessingException {
         String payload = acceptRequestSerializer.serialize(request);
         kafkaProducer.send(MessageBuilder
                 .withPayload(payload)

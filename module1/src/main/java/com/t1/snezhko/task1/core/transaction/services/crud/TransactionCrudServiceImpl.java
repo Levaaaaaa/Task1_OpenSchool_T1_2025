@@ -1,5 +1,6 @@
-package com.t1.snezhko.task1.core.transaction.services;
+package com.t1.snezhko.task1.core.transaction.services.crud;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.t1.snezhko.task1.core.account.AccountStatus;
 import com.t1.snezhko.task1.core.account.persistence.entity.AccountEntity;
 import com.t1.snezhko.task1.core.account.persistence.repositories.AccountRepository;
@@ -31,6 +32,7 @@ class TransactionCrudServiceImpl implements TransactionCrudService{
     @Autowired
     private TransactionRepository transactionRepository;
 
+
     //create
     @Transactional
     public TransactionResponse createTransaction(CreateTransactionRequest request) {
@@ -60,13 +62,13 @@ class TransactionCrudServiceImpl implements TransactionCrudService{
         }
 
         producer.setAmount(producer.getAmount().subtract(request.getAmount()));
-        consumer.setAmount(consumer.getAmount().add(request.getAmount()));
+//        consumer.setAmount(consumer.getAmount().add(request.getAmount()));
 
         transactionEntity.setProducer(optionalProducer.get());
         transactionEntity.setConsumer(optionalConsumer.get());
 
         accountRepository.save(producer);
-        accountRepository.save(consumer);
+        //      accountRepository.save(consumer);
 
         transactionEntity.setTransactionDate(LocalDateTime.now());
         transactionEntity.setStatus(TransactionStatus.REQUESTED);
@@ -109,5 +111,19 @@ class TransactionCrudServiceImpl implements TransactionCrudService{
         accountRepository.save(consumer);
         transactionRepository.delete(transaction);
         return transactionMapper.toDto(transaction);
+    }
+
+    @Override
+    public TransactionResponse updateTransactionStatus(UUID id, TransactionStatus status) {
+        Optional<TransactionEntity> optional = transactionRepository.findByTransactionId(id);
+        if (optional.isEmpty())
+        {
+            throw new EntityNotFoundException("Transaction not found!");
+        }
+
+        TransactionEntity entity = optional.get();
+        entity.setStatus(status);
+        transactionRepository.save(entity);
+        return transactionMapper.toDto(entity);
     }
 }
