@@ -20,9 +20,9 @@ services:
       timeout: 10s
       retries: 120
 
-  t1-task1-app:
+  t1-service-module1:
     restart: always
-    build: .
+    build: ./module1/
     depends_on:
       t1-db-host:
         condition: service_healthy
@@ -33,6 +33,11 @@ services:
       - SPRING_DATASOURCE_USERNAME=t1
       - SPRING_DATASOURCE_PASSWORD=t1
 
+  t1-service-module2:
+    restart: always
+    build: ./module2/
+    ports:
+      - "8081:8080"
   zookeeper_t1:
     image: confluentinc/cp-zookeeper:5.5.0
     hostname: zookeeper_t1
@@ -56,8 +61,19 @@ services:
         KAFKA_BROKER_ID: 1
         KAFKA_ZOOKEEPER_CONNECT: 'zookeeper_t1:2182'
         KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker_t1:29092,PLAINTEXT_HOST://broker_t1:9092
-        KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
+        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker_t1:9092
+#        ,PLAINTEXT_HOST://broker_t1:9092
+        KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
         KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
         KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
         KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    depends_on:
+      - broker_t1
+    ports:
+      - "8000:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: broker_t1:9092
