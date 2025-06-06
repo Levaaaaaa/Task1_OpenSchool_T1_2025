@@ -13,6 +13,7 @@ class ClientMapperImpl implements ClientMapper{
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
                 .patronymic(entity.getPatronymic())
+                .clientStatus(entity.getStatus())
                 .build();
     }
 
@@ -23,6 +24,7 @@ class ClientMapperImpl implements ClientMapper{
                 .lastName(dto.getLastName())
                 .patronymic(dto.getPatronymic())
                 .clientId(dto.getClientId())
+                .status(dto.getClientStatus())
                 .build();
     }
 }

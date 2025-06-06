@@ -1,4 +1,4 @@
-package com.t1.snezhko.task1.core.transaction.services.accept_transaction;
+package com.t1.snezhko.task1.core.make_transaction.accept_transaction;
 
 import com.t1.snezhko.task1.core.transaction.dto.TransactionResponse;
 import com.t1.snezhko.task1.core.transaction.dto.check_status.CheckTransactionStatusResponse;

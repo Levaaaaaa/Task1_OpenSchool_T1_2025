@@ -1,5 +1,6 @@
 package com.t1.snezhko.task1.core.client.persistence.entity;
 
+import com.t1.snezhko.task1.core.client.ClientStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -31,4 +32,8 @@ public class ClientEntity {
 
     @Column(name = "client_id", nullable = false, unique = true)
     UUID clientId;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    ClientStatus status;
 }

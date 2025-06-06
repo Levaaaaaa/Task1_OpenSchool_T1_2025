@@ -87,21 +87,14 @@ class TransactionCrudServiceImpl implements TransactionCrudService{
 
     @Cached
     public TransactionResponse getTransactionById(UUID id) {
-        Optional<TransactionEntity> optional = transactionRepository.findByTransactionId(id);
-        if (optional.isEmpty()) {
-            throw new EntityNotFoundException("Transaction not found!");
-        }
-        return transactionMapper.toDto(optional.get());
+        TransactionEntity entity = getTransactionEntity(id);
+        return transactionMapper.toDto(entity);
     }
 
     //delete
     @Transactional
     public TransactionResponse deleteTransaction(UUID id) {
-        Optional<TransactionEntity> optional = transactionRepository.findByTransactionId(id);
-        if (optional.isEmpty()) {
-            throw new EntityNotFoundException("Transaction not found!");
-        }
-        TransactionEntity transaction = optional.get();
+        TransactionEntity transaction = getTransactionEntity(id);
         AccountEntity producer = accountRepository.findById(transaction.getProducer().getId()).get();
         AccountEntity consumer = accountRepository.findById(transaction.getConsumer().getId()).get();
 
@@ -115,15 +108,18 @@ class TransactionCrudServiceImpl implements TransactionCrudService{
 
     @Override
     public TransactionResponse updateTransactionStatus(UUID id, TransactionStatus status) {
-        Optional<TransactionEntity> optional = transactionRepository.findByTransactionId(id);
-        if (optional.isEmpty())
-        {
-            throw new EntityNotFoundException("Transaction not found!");
-        }
-
-        TransactionEntity entity = optional.get();
+        TransactionEntity entity = getTransactionEntity(id);
         entity.setStatus(status);
         transactionRepository.save(entity);
         return transactionMapper.toDto(entity);
+    }
+
+    private TransactionEntity getTransactionEntity(UUID id) {
+        Optional<TransactionEntity> optional = transactionRepository.findByTransactionId(id);
+        if (optional.isEmpty())
+        {
+            throw new EntityNotFoundException("Transaction " + id + " not found!");
+        }
+        return optional.get();
     }
 }

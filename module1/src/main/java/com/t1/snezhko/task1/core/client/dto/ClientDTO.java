@@ -1,5 +1,6 @@
 package com.t1.snezhko.task1.core.client.dto;
 
+import com.t1.snezhko.task1.core.client.ClientStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,4 +21,5 @@ public class ClientDTO {
     String lastName;
     String patronymic;
     UUID clientId;
+    ClientStatus clientStatus;
 }

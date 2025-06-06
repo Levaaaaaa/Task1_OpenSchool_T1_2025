@@ -23,6 +23,7 @@ services:
   t1-service-module1:
     restart: always
     build: ./module1/
+    container_name: t1-service1
     depends_on:
       t1-db-host:
         condition: service_healthy
@@ -36,8 +37,17 @@ services:
   t1-service-module2:
     restart: always
     build: ./module2/
+    container_name: t1-accept-transaction-app
     ports:
       - "8081:8080"
+
+  t1-check-client-app:
+    restart: no
+    build: ./check-client-service/
+    container_name: t1-check-client-app
+    ports:
+      - "8082:8080"
+
   zookeeper_t1:
     image: confluentinc/cp-zookeeper:5.5.0
     hostname: zookeeper_t1

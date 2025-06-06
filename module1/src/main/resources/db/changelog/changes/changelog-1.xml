@@ -24,6 +24,7 @@
             <column name="client_id" type="UUID">
                 <constraints nullable="false" unique="true"/>
             </column>
+            <column name="status" type="VARCHAR(15)"/>
         </createTable>
     </changeSet>
 
