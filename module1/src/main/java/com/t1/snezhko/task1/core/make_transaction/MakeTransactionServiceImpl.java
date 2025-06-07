@@ -54,6 +54,7 @@ class MakeTransactionServiceImpl implements MakeTransactionService {
 
     public TransactionResponse makeTransaction(CreateTransactionRequest request) throws JsonProcessingException{
         //create entity in db
+        log.info("Make transaction service: received request to make transaction by " + request.getProducer() + " amount " + request.getAmount());
         TransactionResponse response = transactionCrudService.createTransaction(request);
 
         ClientDTO clientDTO = clientService.getClientById(getClientId(request.getProducer()));

@@ -38,6 +38,7 @@ public class TransactionKafkaConsumer {
                                                            @Headers Map<String, Object> headers)
             throws JsonProcessingException {
         log.info("Receive message " + payload + " from topic t1_demo_transactions");
+        payload = payload.replaceAll("[\n\t]+", "");
         makeTransactionService.makeTransaction(objectMapper.readValue(payload, CreateTransactionRequest.class));
     }
 
@@ -46,6 +47,7 @@ public class TransactionKafkaConsumer {
     public void acceptTransaction(@Payload String payload, @Headers Map<String, Object> headers) {
         log.info("Start listener for topic " + TRANSACTION_RESULT_TOPIC_NAME);
         try {
+            payload = payload.replaceAll("[\n\t]+", "");
             TransactionResponse response = acceptTransactionService.acceptStatus(objectMapper.readValue(payload, CheckTransactionStatusResponse.class));
             log.info("Receive message " + payload + " from topic " + TRANSACTION_RESULT_TOPIC_NAME + ". Transaction " + response.getTransactionId() + " was assigned the status " + response.getStatus().toString());
         }

@@ -5,6 +5,7 @@ services:
   t1-db-host:
     image: postgres
     restart: always
+    container_name: t1-postgres
     volumes:
       - pg_t1:/var/lib/postgresql/data
     environment:
@@ -23,7 +24,7 @@ services:
   t1-service-module1:
     restart: always
     build: ./module1/
-    container_name: t1-service1
+    container_name: t1-main-app
     depends_on:
       t1-db-host:
         condition: service_healthy
@@ -82,6 +83,7 @@ services:
     image: provectuslabs/kafka-ui:latest
     depends_on:
       - broker_t1
+    container_name: kafka-ui
     ports:
       - "8000:8080"
     environment:

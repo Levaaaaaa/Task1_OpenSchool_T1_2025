@@ -50,7 +50,7 @@ class TransactionCrudServiceImpl implements TransactionCrudService{
         AccountEntity consumer = optionalConsumer.get();
 
         if (producer.getAmount().compareTo(request.getAmount()) < 0) {
-            throw new IllegalStateException("Insufficient funds!");
+            throw new IllegalStateException("Insufficient funds! Producer has only " + producer.getAmount() + " but need " + request.getAmount());
         }
 
         if (!producer.getStatus().equals(AccountStatus.OPEN)) {
