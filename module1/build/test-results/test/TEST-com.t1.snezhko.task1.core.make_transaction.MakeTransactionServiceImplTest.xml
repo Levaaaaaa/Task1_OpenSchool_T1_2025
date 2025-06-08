@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImplTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-06-08T16:11:15.335Z" hostname="DESKTOP-MNGQN6P" time="1.153">
+  <properties/>
+  <testcase name="shouldNotCheckClient_whenTransactionArrested()" classname="com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImplTest" time="1.082"/>
+  <testcase name="shouldTreatClientAsActive_whenClientStatusIsNull()" classname="com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImplTest" time="0.033"/>
+  <testcase name="shouldThrowException_whenSerializationFails()" classname="com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImplTest" time="0.013"/>
+  <testcase name="shouldSendKafkaMessage_whenClientIsActiveAndNotBlacklisted()" classname="com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImplTest" time="0.009"/>
+  <testcase name="shouldNotSendKafka_whenClientIsBlacklisted()" classname="com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImplTest" time="0.011"/>
+  <system-out><![CDATA[19:11:16.390 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by 6197ed42-9378-49fe-9d40-4aefad818631 amount 100
+19:11:16.427 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by 258fd2ca-84c9-4ff9-ac72-698b2a6b204d amount 100
+19:11:16.450 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Message serializedwas sent into topic t1_demo_transaction_accept
+19:11:16.463 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by d4f800c7-5058-4e8f-a4fd-639e2d9c3f30 amount 100
+19:11:16.474 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by 36d0084b-dfbd-4971-8738-6a62a3e9b255 amount 100
+19:11:16.475 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Message serialized-requestwas sent into topic t1_demo_transaction_accept
+19:11:16.482 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by e5d139bf-96c3-4219-a139-ebec9d150634 amount 100
+19:11:16.484 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Client 94094c7e-5f3e-40b0-8fa7-1a4f8ea5ed09 was BLOCKED!
+19:11:16.486 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Account e5d139bf-96c3-4219-a139-ebec9d150634 was BLOCKED!
+19:11:16.486 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Transaction 3921c25a-f2d8-454f-a4a2-221ea992eb22 was REJECTED
+]]></system-out>
+  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build what is described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\User\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.15.11\a38b16385e867f59a641330f0362ebe742788ed8\byte-buddy-agent-1.15.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

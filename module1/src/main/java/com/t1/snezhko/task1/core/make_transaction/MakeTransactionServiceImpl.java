@@ -9,6 +9,7 @@ import com.t1.snezhko.task1.core.client.ClientStatus;
 import com.t1.snezhko.task1.core.client.dto.ClientDTO;
 import com.t1.snezhko.task1.core.client.persistence.entity.ClientEntity;
 import com.t1.snezhko.task1.core.client.services.ClientService;
+import com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountService;
 import com.t1.snezhko.task1.core.make_transaction.check_client.CheckClientService;
 import com.t1.snezhko.task1.core.make_transaction.dto.CheckClientRequest;
 import com.t1.snezhko.task1.core.make_transaction.dto.CheckClientResponse;
@@ -50,6 +51,9 @@ class MakeTransactionServiceImpl implements MakeTransactionService {
     @Autowired
     private ClientService clientService;
 
+    @Autowired
+    private ArrestAccountService arrestAccountService;
+
     private static final String TRANSACTION_ACCEPT_TOPIC = "t1_demo_transaction_accept";
 
     public TransactionResponse makeTransaction(CreateTransactionRequest request) throws JsonProcessingException{
@@ -59,10 +63,19 @@ class MakeTransactionServiceImpl implements MakeTransactionService {
 
         ClientDTO clientDTO = clientService.getClientById(getClientId(request.getProducer()));
         boolean isClientActive = true;
+
+        response = arrestAccountService.checkAccountAndArrest(clientDTO, response);
+
+        if (!response.getStatus().equals(TransactionStatus.REQUESTED)) {
+            //если транзакция уже отклонена (например, если счёт арестован), то нет смысла проверять клиента или счёт
+            return response;
+        }
         if (clientDTO.getClientStatus() == null || clientDTO.getClientStatus().equals(ClientStatus.ACTIVE)) {
             isClientActive = checkClientStatus(request, response.getTransactionId());
         }
 
+        //если клиент активен - инициировать проведение транзакции
+        //отправить через Kafka запрос на подтверждение транзакции
         if (isClientActive) {
             sendAcceptRequestToKafka(
                     CheckTransactionStatusRequest.builder()
