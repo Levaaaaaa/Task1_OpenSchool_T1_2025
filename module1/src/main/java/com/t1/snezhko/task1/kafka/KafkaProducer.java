@@ -1,12 +1,14 @@
 package com.t1.snezhko.task1.kafka;
 
+import org.example.exceptions.KafkaSendException;
+import org.example.kafka.KafkaSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KafkaProducer {
+public class KafkaProducer implements KafkaSender {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 

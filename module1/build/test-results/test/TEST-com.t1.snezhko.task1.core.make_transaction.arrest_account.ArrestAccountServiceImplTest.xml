@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImplTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-06-08T16:11:16.533Z" hostname="DESKTOP-MNGQN6P" time="0.025">
+<testsuite name="com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImplTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-06-11T15:28:42" hostname="DESKTOP-MNGQN6P" time="0.021">
   <properties/>
-  <testcase name="shouldArrestAccount_whenRejectCountExceedsThresholdAndClientStatusIsKnown()" classname="com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImplTest" time="0.012"/>
+  <testcase name="shouldArrestAccount_whenRejectCountExceedsThresholdAndClientStatusIsKnown()" classname="com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImplTest" time="0.011"/>
   <testcase name="shouldNotArrest_whenRejectCountIsNull()" classname="com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImplTest" time="0.003"/>
   <testcase name="shouldNotArrest_whenRejectCountIsBelowThreshold()" classname="com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImplTest" time="0.003"/>
-  <testcase name="shouldNotArrest_whenClientStatusIsNull()" classname="com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImplTest" time="0.004"/>
-  <system-out><![CDATA[19:11:16.543 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Start transaction checking and arresting service for account 988e1cf7-7e0d-4293-a0d5-0e651ff5e884, transaction - 9f290217-320d-4fdb-98d1-1b3f59085487 Amount - 100 Max rejected transaction count - 2
-19:11:16.543 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Arrest account 988e1cf7-7e0d-4293-a0d5-0e651ff5e884
-19:11:16.544 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Account 988e1cf7-7e0d-4293-a0d5-0e651ff5e884 was arrested successfully!
-19:11:16.547 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Start transaction checking and arresting service for account 6de8d521-dd23-4888-84d2-367b7361ab05, transaction - 9415b75b-08f2-4ea5-86ab-86df5bb4d3cd Amount - 100 Max rejected transaction count - 2
-19:11:16.548 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Account 6de8d521-dd23-4888-84d2-367b7361ab05 wasn't arrested!
-19:11:16.552 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Start transaction checking and arresting service for account 5433159b-5df2-4b83-99cb-edf7ce672fd4, transaction - 2abd5482-8c5a-4e50-a025-ddf22210069e Amount - 100 Max rejected transaction count - 2
-19:11:16.552 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Account 5433159b-5df2-4b83-99cb-edf7ce672fd4 wasn't arrested!
-19:11:16.557 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Start transaction checking and arresting service for account baf17828-3c2b-403a-9cc9-1cdafe2e453f, transaction - ab3d4770-91a6-4ad9-bd55-020f69b0ad53 Amount - 100 Max rejected transaction count - 2
-19:11:16.557 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Account baf17828-3c2b-403a-9cc9-1cdafe2e453f wasn't arrested!
+  <testcase name="shouldNotArrest_whenClientStatusIsNull()" classname="com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImplTest" time="0.002"/>
+  <system-out><![CDATA[18:28:42.158 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Start transaction checking and arresting service for account 9949d7f2-151d-4751-9e0c-f69fb5a8731a, transaction - 997ef572-1158-4338-9439-fdee9a31074b Amount - 100 Max rejected transaction count - 2
+18:28:42.158 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Arrest account 9949d7f2-151d-4751-9e0c-f69fb5a8731a
+18:28:42.158 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Account 9949d7f2-151d-4751-9e0c-f69fb5a8731a was arrested successfully!
+18:28:42.162 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Start transaction checking and arresting service for account b69f260a-34d3-483b-8256-228ac3b85a55, transaction - 3820a299-03de-4f77-93b0-b241315c0b82 Amount - 100 Max rejected transaction count - 2
+18:28:42.162 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Account b69f260a-34d3-483b-8256-228ac3b85a55 wasn't arrested!
+18:28:42.166 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Start transaction checking and arresting service for account 6e7cc0ec-16fe-4055-a848-1f740206f148, transaction - 9d28078c-18a0-4c3d-a18b-b8f581e91bc7 Amount - 100 Max rejected transaction count - 2
+18:28:42.166 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Account 6e7cc0ec-16fe-4055-a848-1f740206f148 wasn't arrested!
+18:28:42.168 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Start transaction checking and arresting service for account a563faaf-3650-4815-a6ef-93757162ad17, transaction - 313f6ce7-ed0b-49cf-935d-ec0b2b43714b Amount - 100 Max rejected transaction count - 2
+18:28:42.168 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Account a563faaf-3650-4815-a6ef-93757162ad17 wasn't arrested!
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

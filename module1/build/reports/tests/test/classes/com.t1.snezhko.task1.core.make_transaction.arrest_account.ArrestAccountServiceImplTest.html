@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.022s</div>
+<div class="counter">0.019s</div>
 <p>duration</p>
 </div>
 </td>
@@ -58,16 +58,16 @@
 </tr>
 </table>
 </div>
-<div class="tab-container">
+<div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#">Tests</a>
+<a href="#tab0">Tests</a>
 </li>
 <li>
-<a href="#">Standard output</a>
+<a href="#tab1">Standard output</a>
 </li>
 </ul>
-<div class="tab">
+<div id="tab0" class="tab">
 <h2>Tests</h2>
 <table>
 <thead>
@@ -79,12 +79,12 @@
 </thead>
 <tr>
 <td class="success">shouldArrestAccount_whenRejectCountExceedsThresholdAndClientStatusIsKnown()</td>
-<td class="success">0.012s</td>
+<td class="success">0.011s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldNotArrest_whenClientStatusIsNull()</td>
-<td class="success">0.004s</td>
+<td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -99,18 +99,18 @@
 </tr>
 </table>
 </div>
-<div class="tab">
+<div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>19:11:16.543 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Start transaction checking and arresting service for account 988e1cf7-7e0d-4293-a0d5-0e651ff5e884, transaction - 9f290217-320d-4fdb-98d1-1b3f59085487 Amount - 100 Max rejected transaction count - 2
-19:11:16.543 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Arrest account 988e1cf7-7e0d-4293-a0d5-0e651ff5e884
-19:11:16.544 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Account 988e1cf7-7e0d-4293-a0d5-0e651ff5e884 was arrested successfully!
-19:11:16.547 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Start transaction checking and arresting service for account 6de8d521-dd23-4888-84d2-367b7361ab05, transaction - 9415b75b-08f2-4ea5-86ab-86df5bb4d3cd Amount - 100 Max rejected transaction count - 2
-19:11:16.548 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Account 6de8d521-dd23-4888-84d2-367b7361ab05 wasn't arrested!
-19:11:16.552 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Start transaction checking and arresting service for account 5433159b-5df2-4b83-99cb-edf7ce672fd4, transaction - 2abd5482-8c5a-4e50-a025-ddf22210069e Amount - 100 Max rejected transaction count - 2
-19:11:16.552 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Account 5433159b-5df2-4b83-99cb-edf7ce672fd4 wasn't arrested!
-19:11:16.557 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Start transaction checking and arresting service for account baf17828-3c2b-403a-9cc9-1cdafe2e453f, transaction - ab3d4770-91a6-4ad9-bd55-020f69b0ad53 Amount - 100 Max rejected transaction count - 2
-19:11:16.557 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Account baf17828-3c2b-403a-9cc9-1cdafe2e453f wasn't arrested!
+<pre>18:28:42.158 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Start transaction checking and arresting service for account 9949d7f2-151d-4751-9e0c-f69fb5a8731a, transaction - 997ef572-1158-4338-9439-fdee9a31074b Amount - 100 Max rejected transaction count - 2
+18:28:42.158 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Arrest account 9949d7f2-151d-4751-9e0c-f69fb5a8731a
+18:28:42.158 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Account 9949d7f2-151d-4751-9e0c-f69fb5a8731a was arrested successfully!
+18:28:42.162 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Start transaction checking and arresting service for account b69f260a-34d3-483b-8256-228ac3b85a55, transaction - 3820a299-03de-4f77-93b0-b241315c0b82 Amount - 100 Max rejected transaction count - 2
+18:28:42.162 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Account b69f260a-34d3-483b-8256-228ac3b85a55 wasn't arrested!
+18:28:42.166 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Start transaction checking and arresting service for account 6e7cc0ec-16fe-4055-a848-1f740206f148, transaction - 9d28078c-18a0-4c3d-a18b-b8f581e91bc7 Amount - 100 Max rejected transaction count - 2
+18:28:42.166 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Account 6e7cc0ec-16fe-4055-a848-1f740206f148 wasn't arrested!
+18:28:42.168 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Start transaction checking and arresting service for account a563faaf-3650-4815-a6ef-93757162ad17, transaction - 313f6ce7-ed0b-49cf-935d-ec0b2b43714b Amount - 100 Max rejected transaction count - 2
+18:28:42.168 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.arrest_account.ArrestAccountServiceImpl -- Account a563faaf-3650-4815-a6ef-93757162ad17 wasn't arrested!
 </pre>
 </span>
 </div>
@@ -122,7 +122,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 8.13</a> at 8 июн. 2025 г., 19:11:16</p>
+<a href="http://www.gradle.org">Gradle 8.10.1</a> at 11 июн. 2025 г., 18:28:42</p>
 </div>
 </div>
 </body>
