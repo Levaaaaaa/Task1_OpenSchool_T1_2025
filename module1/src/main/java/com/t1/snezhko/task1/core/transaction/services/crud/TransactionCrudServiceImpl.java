@@ -12,6 +12,7 @@ import com.t1.snezhko.task1.core.transaction.persistence.entity.TransactionEntit
 import com.t1.snezhko.task1.core.transaction.persistence.mappers.TransactionMapper;
 import com.t1.snezhko.task1.core.transaction.persistence.repositories.TransactionRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.example.annotation.Metric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +36,7 @@ class TransactionCrudServiceImpl implements TransactionCrudService{
 
     //create
     @Transactional
+    @Metric
     public TransactionResponse createTransaction(CreateTransactionRequest request) {
         TransactionEntity transactionEntity = transactionMapper.fromDto(request);
         Optional<AccountEntity> optionalConsumer = accountRepository.findByAccountId(request.getConsumer());
@@ -81,11 +83,13 @@ class TransactionCrudServiceImpl implements TransactionCrudService{
 
     //read
     @Cached
+    @Metric
     public List<TransactionResponse> getAllTransactions() {
         return transactionRepository.findAll().stream().map(transactionMapper::toDto).toList();
     }
 
     @Cached
+    @Metric
     public TransactionResponse getTransactionById(UUID id) {
         TransactionEntity entity = getTransactionEntity(id);
         return transactionMapper.toDto(entity);
@@ -93,6 +97,7 @@ class TransactionCrudServiceImpl implements TransactionCrudService{
 
     //delete
     @Transactional
+    @Metric
     public TransactionResponse deleteTransaction(UUID id) {
         TransactionEntity transaction = getTransactionEntity(id);
         AccountEntity producer = accountRepository.findById(transaction.getProducer().getId()).get();
@@ -107,6 +112,7 @@ class TransactionCrudServiceImpl implements TransactionCrudService{
     }
 
     @Override
+    @Metric
     public TransactionResponse updateTransactionStatus(UUID id, TransactionStatus status) {
         TransactionEntity entity = getTransactionEntity(id);
         entity.setStatus(status);

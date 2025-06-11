@@ -6,6 +6,7 @@ import com.t1.snezhko.task1.core.client.persistence.entity.ClientEntity;
 import com.t1.snezhko.task1.core.client.persistence.mappers.ClientMapper;
 import com.t1.snezhko.task1.core.client.persistence.repositories.ClientRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.example.annotation.Metric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,7 @@ class ClientServiceImpl implements ClientService{
     private ClientMapper clientMapper;
 
     @Override
+    @Metric
     public ClientDTO updateClientStatus(UUID clientId, ClientStatus newStatus) {
         ClientEntity entity = getClientEntity(clientId);
         entity.setStatus(newStatus);
@@ -29,6 +31,7 @@ class ClientServiceImpl implements ClientService{
     }
 
     @Override
+    @Metric
     public ClientDTO getClientById(UUID id) {
         ClientEntity entity = getClientEntity(id);
         return clientMapper.toDto(entity);

@@ -1,4 +1,4 @@
-package com.t1.snezhko.task1.core.measure.entities;
+package org.example.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -11,3 +11,5 @@ import java.util.UUID;
 public interface AccountRepository extends JpaRepository<AccountEntity, Long> {
     public Optional<AccountEntity> findByAccountId(UUID accountId);
 }
+
+//2025-06-11 20:17:45 Field accountRepository in com.t1.snezhko.task1.core.account.services.AccountCrudServiceImpl required a bean of type 'com.t1.snezhko.task1.core.account.persistence.repositories.AccountRepository' that could not be found.

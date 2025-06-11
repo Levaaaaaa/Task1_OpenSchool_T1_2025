@@ -1,30 +1,29 @@
-package com.t1.snezhko.task1.aop.aspect;
+package org.example.aspect;
 
-import com.t1.snezhko.task1.core.errorlog.entity.DataSourceErrorLogEntity;
-import com.t1.snezhko.task1.core.errorlog.repository.DataSourceErrorLogRepository;
-import com.t1.snezhko.task1.kafka.KafkaSendException;
-import com.t1.snezhko.task1.kafka.KafkaProducer;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
+import org.example.entity.DataSourceErrorLogEntity;
+import org.example.exceptions.KafkaSendException;
+import org.example.kafka.KafkaSender;
+import org.example.repository.DataSourceErrorLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 
 @Aspect
-@Component
 @Slf4j
+@RequiredArgsConstructor
 public class LogDataSourceErrorAspect {
-    @Autowired
-    private DataSourceErrorLogRepository repository;
+    private final DataSourceErrorLogRepository repository;
 
-    @Autowired
-    private KafkaProducer kafkaProducer;
+    private final KafkaSender kafkaProducer;
 
 //    @AfterThrowing(pointcut = "execution(* com.t1.snezhko.task1..*(..))", throwing = "ex")
-    @AfterThrowing(pointcut = "@within(com.t1.snezhko.task1.aop.annotations.LogException)", throwing = "ex")
+    @AfterThrowing(pointcut = "@within(org.example.annotation.LogException)", throwing = "ex")
     public void logException(JoinPoint joinPoint, Throwable ex) {
         String message = "Method" + joinPoint.getSignature().toShortString() + " was caught exception " + ex.getCause();
         String topic = "t1_demo_metrics";
@@ -38,7 +37,7 @@ public class LogDataSourceErrorAspect {
             );
             log.info("Exception " + ex.getMessage() + " was sent into Kafka!");
         }
-        catch (KafkaSendException e) {
+        catch (KafkaSendException | NullPointerException e) {
             DataSourceErrorLogEntity entity = DataSourceErrorLogEntity.builder()
                     .message(ex.getMessage())
                     .methodSignature(joinPoint.getSignature().toShortString())

@@ -10,6 +10,7 @@ import com.t1.snezhko.task1.aop.annotations.Cached;
 import com.t1.snezhko.task1.core.client.persistence.entity.ClientEntity;
 import com.t1.snezhko.task1.core.client.persistence.repositories.ClientRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.example.annotation.Metric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,7 @@ class AccountCrudServiceImpl implements AccountCrudService{
     private AccountMapper accountMapper;
 
     //create
+    @Metric
     public AccountResponse createAccount(CreateAccountRequest request) {
         Optional<ClientEntity> optional = clientRepository.findByClientId(request.getClientId());
         if (optional.isEmpty()) {
@@ -46,11 +48,13 @@ class AccountCrudServiceImpl implements AccountCrudService{
      }
     //read
     @Cached
+    @Metric
     public List<AccountResponse> getAllAccounts() {
         return accountRepository.findAll().stream().map(accountMapper::toDto).toList();
     }
 
     @Cached
+    @Metric
     public AccountResponse getAccountById(UUID id) {
         Optional<AccountEntity> optional = accountRepository.findByAccountId(id);
         if (optional.isPresent()) {
@@ -59,6 +63,7 @@ class AccountCrudServiceImpl implements AccountCrudService{
         throw new EntityNotFoundException("Account not found!");
     }
     //update
+    @Metric
     public AccountResponse updateAccountById(UUID id, CreateAccountRequest request) {
         Optional<ClientEntity> optional = clientRepository.findByClientId(request.getClientId());
         if (optional.isEmpty()) {
@@ -78,6 +83,8 @@ class AccountCrudServiceImpl implements AccountCrudService{
     }
 
     //delete
+    @Override
+    @Metric
     public AccountResponse deleteAccountById(UUID id) {
         Optional<AccountEntity> optional = accountRepository.findByAccountId(id);
         if (optional.isEmpty()) {
@@ -89,6 +96,7 @@ class AccountCrudServiceImpl implements AccountCrudService{
     }
 
     @Override
+    @Metric
     public AccountResponse addAmount(UUID id, BigDecimal amountToAdd) {
         Optional<AccountEntity> optional = accountRepository.findByAccountId(id);
         if (optional.isEmpty()) {
@@ -101,6 +109,7 @@ class AccountCrudServiceImpl implements AccountCrudService{
     }
 
     @Override
+    @Metric
     public AccountResponse addFrozenAmount(UUID id, BigDecimal amountToAdd) {
         Optional<AccountEntity> optional = accountRepository.findByAccountId(id);
         if (optional.isEmpty()) {
@@ -113,6 +122,7 @@ class AccountCrudServiceImpl implements AccountCrudService{
     }
 
     @Override
+    @Metric
     public AccountResponse updateStatus(UUID id, AccountStatus newStatus) {
         Optional<AccountEntity> optional = accountRepository.findByAccountId(id);
         if (optional.isEmpty()) {

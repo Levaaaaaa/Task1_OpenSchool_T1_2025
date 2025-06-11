@@ -1,13 +1,17 @@
-package com.t1.snezhko.task1.aop.aspect;
+package org.example.aspect;
 
-import com.t1.snezhko.task1.kafka.KafkaSendException;
-import com.t1.snezhko.task1.kafka.KafkaProducer;
-import com.t1.snezhko.task1.core.measure.repositories.TimeLimitExceedLogRepository;
-import com.t1.snezhko.task1.core.measure.entities.TimeLimitExceedLogEntity;
+
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.example.entity.TimeLimitExceedLogEntity;
+import org.example.exceptions.KafkaSendException;
+import org.example.kafka.KafkaSender;
+import org.example.properties.TimeLimitProperties;
+import org.example.repository.TimeLimitExceedLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -17,29 +21,27 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 
 @Aspect
-@Component
 @Slf4j
+@RequiredArgsConstructor
 public class TimeMetricAspect {
 
-    @Value("${app.method_execution.time_limit}")
-    private long executionTimeLimit;
+//    @Value("${app.method_execution.time_limit}")
+    private final TimeLimitProperties timeLimitProperties;
 
-    @Autowired
-    private TimeLimitExceedLogRepository repository;
+    private final TimeLimitExceedLogRepository repository;
 
-    @Autowired
-    private KafkaProducer kafkaProducer;
+    private final KafkaSender kafkaProducer;
 
-    @Around("@annotation(com.t1.snezhko.task1.aop.annotations.Metric)")
+    @Around("@annotation(org.example.annotation.Metric)")
     public Object measureMethodExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
 
         LocalDateTime startTime = LocalDateTime.now();
         long start = System.currentTimeMillis();
         Object result = joinPoint.proceed();
         long duration = System.currentTimeMillis() - start;
-        String message = "Method's " + joinPoint.getSignature().toShortString() + " execution time - " + duration + ". Limit - " + executionTimeLimit;
+        String message = "Method's " + joinPoint.getSignature().toShortString() + " execution time - " + duration + ". Limit - " + timeLimitProperties.getTimeLimit();
         log.info(message);
-        if (duration > executionTimeLimit) {
+        if (duration > timeLimitProperties.getTimeLimit()) {
 
             String topic = "t1_demo_metrics";
             try {
@@ -51,7 +53,7 @@ public class TimeMetricAspect {
                 );
                 log.info("Message was sent by Kafka!");
             }
-            catch (KafkaSendException e) {
+            catch (KafkaSendException | NullPointerException e) {
                 TimeLimitExceedLogEntity entity = TimeLimitExceedLogEntity.builder()
                     .time(duration)
                     .methodStartTime(startTime)

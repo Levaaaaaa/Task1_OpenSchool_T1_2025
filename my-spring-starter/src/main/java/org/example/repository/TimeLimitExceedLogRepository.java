@@ -1,6 +1,6 @@
-package com.t1.snezhko.task1.core.measure.repositories;
+package org.example.repository;
 
-import com.t1.snezhko.task1.core.measure.entities.TimeLimitExceedLogEntity;
+import org.example.entity.TimeLimitExceedLogEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

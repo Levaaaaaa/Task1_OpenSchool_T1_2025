@@ -1,4 +1,4 @@
-package com.t1.snezhko.task1.aop.annotations;
+package org.example.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

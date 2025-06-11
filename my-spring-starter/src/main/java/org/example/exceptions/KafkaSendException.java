@@ -1,4 +1,4 @@
-package com.t1.snezhko.task1.kafka;
+package org.example.exceptions;
 
 public class KafkaSendException extends RuntimeException {
     public KafkaSendException(String message) {

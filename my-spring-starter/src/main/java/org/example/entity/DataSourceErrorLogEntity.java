@@ -1,4 +1,5 @@
-package com.t1.snezhko.task1.core.errorlog.entity;
+package org.example.entity;
+
 
 import jakarta.persistence.*;
 import lombok.*;

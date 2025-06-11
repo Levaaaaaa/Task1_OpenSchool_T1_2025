@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1.117s</div>
+<div class="counter">1.414s</div>
 <p>duration</p>
 </div>
 </td>
@@ -82,27 +82,27 @@
 </thead>
 <tr>
 <td class="success">shouldNotCheckClient_whenTransactionArrested()</td>
-<td class="success">1.055s</td>
+<td class="success">1.341s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldNotSendKafka_whenClientIsBlacklisted()</td>
-<td class="success">0.007s</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldSendKafkaMessage_whenClientIsActiveAndNotBlacklisted()</td>
-<td class="success">0.007s</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldThrowException_whenSerializationFails()</td>
-<td class="success">0.010s</td>
+<td class="success">0.014s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldTreatClientAsActive_whenClientStatusIsNull()</td>
-<td class="success">0.038s</td>
+<td class="success">0.041s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -110,16 +110,16 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>18:28:42.007 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by f1fb8e5d-4ca7-49d8-8de3-4d4c91bc86d1 amount 100
-18:28:42.050 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by d186cc61-957b-477f-b412-f381fb28cd80 amount 100
-18:28:42.078 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Message serializedwas sent into topic t1_demo_transaction_accept
-18:28:42.091 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by c94e5626-2d17-42f2-80fc-53e61f1a6e16 amount 100
-18:28:42.098 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by ad0ef5f3-df0f-4738-9d3f-7a71014631bc amount 100
-18:28:42.099 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Message serialized-requestwas sent into topic t1_demo_transaction_accept
-18:28:42.105 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by f2f3ac9e-7493-4f44-85fe-15270194d75f amount 100
-18:28:42.106 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Client b537a9b8-0dad-4530-ad18-87c8cdc6f221 was BLOCKED!
-18:28:42.107 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Account f2f3ac9e-7493-4f44-85fe-15270194d75f was BLOCKED!
-18:28:42.107 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Transaction 5379b276-7e7d-4210-a00a-e9d5f60e2071 was REJECTED
+<pre>19:37:17.927 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by f85bddb7-2fb4-492e-96b0-c3151e1ef3d5 amount 100
+19:37:17.996 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by b29b8747-973c-4ff0-ab09-3a2f713653fd amount 100
+19:37:18.024 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Message serializedwas sent into topic t1_demo_transaction_accept
+19:37:18.039 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by 9a76028e-e961-44bc-8681-6c898ba7983e amount 100
+19:37:18.048 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by 4a3452e4-1f2b-4b29-b385-ed26daafb401 amount 100
+19:37:18.050 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Message serialized-requestwas sent into topic t1_demo_transaction_accept
+19:37:18.058 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by df79f4ce-33f4-4344-b07b-bd5882ce6092 amount 100
+19:37:18.059 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Client a0c90a9b-e59f-4509-b973-10364dcba5a9 was BLOCKED!
+19:37:18.059 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Account df79f4ce-33f4-4344-b07b-bd5882ce6092 was BLOCKED!
+19:37:18.059 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Transaction 93380629-8362-4f61-9906-52809fbc7990 was REJECTED
 </pre>
 </span>
 </div>
@@ -142,7 +142,7 @@ WARNING: Dynamic loading of agents will be disallowed by default in a future rel
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.10.1</a> at 11 июн. 2025 г., 18:28:42</p>
+<a href="http://www.gradle.org">Gradle 8.10.1</a> at 11 июн. 2025 г., 19:37:18</p>
 </div>
 </div>
 </body>

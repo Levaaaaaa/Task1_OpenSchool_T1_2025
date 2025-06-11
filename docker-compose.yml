@@ -22,8 +22,8 @@ services:
       retries: 120
 
   t1-service-module1:
-    restart: always
-    build: ./module1/
+    restart: no
+    build: . #./module1/
     container_name: t1-main-app
     depends_on:
       t1-db-host:
