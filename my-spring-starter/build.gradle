@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.5'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'maven-publish'
+}
+
+group = 'my-starter'
+version = '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            groupId = 'org.example'        // твой group
+            artifactId = 'my-starter'      // имя артефакта (стартер)
+            version = '0.0.1'              // версия
+        }
+    }
+}
+
+dependencies {
+    //FOR STARTER
+    implementation 'org.springframework.boot:spring-boot-starter:3.5.0'
+    implementation 'org.springframework.boot:spring-boot-autoconfigure-processor:3.5.0'
+    implementation 'org.springframework.boot:spring-boot-configuration-processor:3.5.0'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    //PERSISTENCE
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.hibernate.orm:hibernate-core:6.6.15.Final'
+    implementation 'org.liquibase:liquibase-core:4.31.1'
+
+    runtimeOnly 'org.aspectj:aspectjweaver:1.9.24'
+    implementation 'org.springframework.boot:spring-boot-starter-aop:3.5.0'
+
+    implementation 'org.springframework:spring-messaging:7.0.0-M5'
+    implementation 'org.springframework.kafka:spring-kafka:4.0.0-M2'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+test {
+    useJUnitPlatform()
+}

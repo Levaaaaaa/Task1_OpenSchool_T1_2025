@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - MakeTransactionServiceImplTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>MakeTransactionServiceImplTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.t1.snezhko.task1.core.make_transaction.html">com.t1.snezhko.task1.core.make_transaction</a> &gt; MakeTransactionServiceImplTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">5</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">1.414s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">shouldNotCheckClient_whenTransactionArrested()</td>
+<td class="success">1.341s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldNotSendKafka_whenClientIsBlacklisted()</td>
+<td class="success">0.009s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldSendKafkaMessage_whenClientIsActiveAndNotBlacklisted()</td>
+<td class="success">0.009s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldThrowException_whenSerializationFails()</td>
+<td class="success">0.014s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldTreatClientAsActive_whenClientStatusIsNull()</td>
+<td class="success">0.041s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>19:37:17.927 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by f85bddb7-2fb4-492e-96b0-c3151e1ef3d5 amount 100
+19:37:17.996 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by b29b8747-973c-4ff0-ab09-3a2f713653fd amount 100
+19:37:18.024 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Message serializedwas sent into topic t1_demo_transaction_accept
+19:37:18.039 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by 9a76028e-e961-44bc-8681-6c898ba7983e amount 100
+19:37:18.048 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by 4a3452e4-1f2b-4b29-b385-ed26daafb401 amount 100
+19:37:18.050 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Message serialized-requestwas sent into topic t1_demo_transaction_accept
+19:37:18.058 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Make transaction service: received request to make transaction by df79f4ce-33f4-4344-b07b-bd5882ce6092 amount 100
+19:37:18.059 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Client a0c90a9b-e59f-4509-b973-10364dcba5a9 was BLOCKED!
+19:37:18.059 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Account df79f4ce-33f4-4344-b07b-bd5882ce6092 was BLOCKED!
+19:37:18.059 [Test worker] INFO com.t1.snezhko.task1.core.make_transaction.MakeTransactionServiceImpl -- Transaction 93380629-8362-4f61-9906-52809fbc7990 was REJECTED
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build what is described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\User\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.15.11\a38b16385e867f59a641330f0362ebe742788ed8\byte-buddy-agent-1.15.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.10.1</a> at 11 июн. 2025 г., 19:37:18</p>
+</div>
+</div>
+</body>
+</html>
