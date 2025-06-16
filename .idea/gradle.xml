@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/module1" />
             <option value="$PROJECT_DIR$/module2" />
             <option value="$PROJECT_DIR$/my-spring-starter" />
+            <option value="$PROJECT_DIR$/unblocking-service" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -49,6 +49,13 @@ services:
     ports:
       - "8082:8080"
 
+  t1-unlock-service:
+    restart: no
+    build: ./unblocking-service/
+    container_name: t1-unlock-app
+    ports:
+      - "8083:8080"
+      
   zookeeper_t1:
     image: confluentinc/cp-zookeeper:5.5.0
     hostname: zookeeper_t1

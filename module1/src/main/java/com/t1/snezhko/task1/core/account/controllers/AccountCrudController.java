@@ -1,8 +1,10 @@
 package com.t1.snezhko.task1.core.account.controllers;
 
+import com.t1.snezhko.task1.core.account.AccountStatus;
 import com.t1.snezhko.task1.core.account.dto.CreateAccountRequest;
 import com.t1.snezhko.task1.core.account.dto.AccountResponse;
 import com.t1.snezhko.task1.core.account.services.AccountCrudService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,9 +35,24 @@ public class AccountCrudController {
         return ResponseEntity.status(OK).body(accountCrudService.getAccountById(UUID.fromString(id)));
     }
 
+//    @PutMapping("/{id}")
+//    public ResponseEntity<AccountResponse> updateAccountById(@PathVariable("id") String id, @RequestBody CreateAccountRequest request) {
+//        return ResponseEntity.status(OK).body(accountCrudService.updateAccountById(UUID.fromString(id), request));
+//    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<AccountResponse> updateAccountById(@PathVariable("id") String id, @RequestBody CreateAccountRequest request) {
-        return ResponseEntity.status(OK).body(accountCrudService.updateAccountById(UUID.fromString(id), request));
+    public ResponseEntity<AccountResponse> updateAccountStatusById(
+            @PathVariable("id") String id,
+            @PathParam("status") String status
+    ) {
+        return ResponseEntity
+                .status(OK)
+                .body(
+                        accountCrudService.updateStatus(
+                                UUID.fromString(id),
+                                AccountStatus.valueOf(status)
+                        )
+                );
     }
 
     @DeleteMapping("/{id}")
