@@ -1,1 +1,10 @@
 rootProject.name = 'task1'
+include("module1")
+include 'module2'
+include 'check-client-service'
+include 'my-spring-starter'
+
+project(':my-spring-starter').projectDir = file('my-spring-starter')
+project(':module1').projectDir = file('module1')
+include 'unblocking-service'
+
