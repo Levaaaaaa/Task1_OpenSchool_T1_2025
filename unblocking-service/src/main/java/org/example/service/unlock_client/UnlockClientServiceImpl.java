@@ -1,4 +1,4 @@
-package org.example.service;
+package org.example.service.unlock_client;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ class UnlockClientServiceImpl implements UnlockClientService{
                 .toBodilessEntity()
                 .subscribe(
                         response -> log.info("Client " + clientId.toString() + " was unlocked successfully! Response status - " + response.getStatusCode()),
-                        error -> log.error("When unlocking client" + clientId.toString() + " something went wrong! Error message - " + error.getMessage())
+                        error -> log.error("When unlocking client " + clientId.toString() + " something went wrong! Error message - " + error.getMessage())
                 );
     }
 }

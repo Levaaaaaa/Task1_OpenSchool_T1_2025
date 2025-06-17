@@ -1,4 +1,4 @@
-package org.example.service;
+package org.example.service.unlock_client;
 
 import org.springframework.stereotype.Service;
 import java.util.UUID;
