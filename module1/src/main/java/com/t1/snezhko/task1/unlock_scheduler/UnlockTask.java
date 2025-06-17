@@ -1,4 +1,4 @@
-package com.t1.snezhko.task1.core.make_transaction.unlock;
+package com.t1.snezhko.task1.unlock_scheduler;
 
 import com.t1.snezhko.task1.core.account.AccountStatus;
 import com.t1.snezhko.task1.core.account.persistence.entity.AccountEntity;
@@ -8,6 +8,7 @@ import com.t1.snezhko.task1.core.client.persistence.entity.ClientEntity;
 import com.t1.snezhko.task1.core.client.persistence.repositories.ClientRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -30,16 +31,22 @@ public class UnlockTask {
     @Autowired
     private WebClient webClient;
 
-    private static final String UNLOCK_SERVICE_HOST = "t1-unlock-service:8080";
-    private static final String UNLOCK_CLIENT_URL = "/unlock/client/";
-    private static final String UNLOCK_ACCOUNT_URL = "/unlock/account/";
+    @Value("${app.unlock.host}")
+    private String UNLOCK_SERVICE_HOST;
 
+    @Value("${app.unlock.url.client-url}")
+    private String UNLOCK_CLIENT_URL;
 
-    private static final int PERIOD = 120;
-    private static final int CLIENT_TO_UNLOCK_COUNT = 2;
-    private static final int ACCOUNT_TO_UNLOCK_COUNT = 2;
+    @Value("${app.unlock.url.account-url}")
+    private String UNLOCK_ACCOUNT_URL;
 
-    @Scheduled(fixedDelay = (PERIOD * 1000))
+    @Value("${app.unlock.limits.clients-count}")
+    private int CLIENT_TO_UNLOCK_COUNT;
+
+    @Value("${app.unlock.limits.accounts-count}")
+    private int ACCOUNT_TO_UNLOCK_COUNT;
+
+    @Scheduled(fixedDelayString = "${app.unlock.period}")
     public void unlockClientAndAccount() {
         List<ClientEntity> clientsToUnlock = clientRepository.findByStatus(ClientStatus.BLOCKED, Pageable.ofSize(CLIENT_TO_UNLOCK_COUNT));
         for (ClientEntity client : clientsToUnlock) {

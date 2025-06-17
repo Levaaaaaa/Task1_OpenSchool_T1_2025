@@ -1,12 +1,14 @@
 package org.example.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 public class WebClientConfig {
-    private final static String HOST_NAME = "t1-service-module1:8080";
+    @Value("${app.unlock.host}")
+    private String HOST_NAME;
 
     @Bean
     public WebClient webClient() {

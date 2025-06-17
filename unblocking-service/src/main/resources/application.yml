@@ -1,0 +1,6 @@
+app:
+  unlock:
+    host: t1-service-module1:8080
+    url:
+      account-url: /api/v1/accounts/unlock/
+      client-url: /api/v1/clients/unlock/

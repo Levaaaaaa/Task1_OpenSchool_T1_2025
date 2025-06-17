@@ -2,6 +2,7 @@ package org.example.service.unlock_account;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -14,7 +15,8 @@ class UnlockAccountServiceImpl implements UnlockAccountService{
     @Autowired
     private WebClient webClient;
 
-    private final static String BASE_URL = "/api/v1/accounts/unlock/";
+    @Value("${app.unlock.url.account-url}")
+    private String BASE_URL;
 
     @Override
     public void unlockAccount(UUID accountId) {
