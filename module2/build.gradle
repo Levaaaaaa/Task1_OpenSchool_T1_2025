@@ -29,8 +29,13 @@ dependencies {
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    //TEST
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.5.0'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.mockito:mockito-core'
+    testImplementation 'org.springframework.kafka:spring-kafka-test:3.3.7'
 }
 
 test {
