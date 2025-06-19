@@ -1,0 +1,30 @@
+package com.t1.snezhko.task1.core.client.persistence.mappers;
+
+import com.t1.snezhko.task1.core.client.dto.ClientDTO;
+import com.t1.snezhko.task1.core.client.persistence.entity.ClientEntity;
+import org.springframework.stereotype.Service;
+
+@Service
+class ClientMapperImpl implements ClientMapper{
+    @Override
+    public ClientDTO toDto(ClientEntity entity) {
+        return ClientDTO.builder()
+                .clientId(entity.getClientId())
+                .firstName(entity.getFirstName())
+                .lastName(entity.getLastName())
+                .patronymic(entity.getPatronymic())
+                .clientStatus(entity.getStatus())
+                .build();
+    }
+
+    @Override
+    public ClientEntity fromDto(ClientDTO dto) {
+        return ClientEntity.builder()
+                .firstName(dto.getFirstName())
+                .lastName(dto.getLastName())
+                .patronymic(dto.getPatronymic())
+                .clientId(dto.getClientId())
+                .status(dto.getClientStatus())
+                .build();
+    }
+}
