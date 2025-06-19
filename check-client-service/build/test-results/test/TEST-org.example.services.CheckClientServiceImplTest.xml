@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.services.CheckClientServiceImplTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-06-19T19:45:25.370Z" hostname="DESKTOP-MNGQN6P" time="0.007">
+  <properties/>
+  <testcase name="shouldReturnBlackListedFalse_whenLastUuidCharIsOdd()" classname="org.example.services.CheckClientServiceImplTest" time="0.005"/>
+  <testcase name="shouldReturnBlackListedTrue_whenLastUuidCharIsEven()" classname="org.example.services.CheckClientServiceImplTest" time="0.001"/>
+  <system-out><![CDATA[2025-06-19T22:45:25.361+03:00  INFO 13928 --- [    Test worker] o.e.services.CheckClientServiceImpl      : Client 00000000-0000-0000-0000-000000000003 has black list checking result - false
+2025-06-19T22:45:25.377+03:00  INFO 13928 --- [    Test worker] o.e.services.CheckClientServiceImpl      : Client 00000000-0000-0000-0000-000000000002 has black list checking result - true
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

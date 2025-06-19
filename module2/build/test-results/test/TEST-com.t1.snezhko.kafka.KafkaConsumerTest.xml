@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.t1.snezhko.kafka.KafkaConsumerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-06-19T19:45:33.380Z" hostname="DESKTOP-MNGQN6P" time="0.394">
+  <properties/>
+  <testcase name="shouldProcessMessageSuccessfully()" classname="com.t1.snezhko.kafka.KafkaConsumerTest" time="0.378"/>
+  <testcase name="shouldThrowExceptionOnInvalidJson()" classname="com.t1.snezhko.kafka.KafkaConsumerTest" time="0.014"/>
+  <system-out><![CDATA[22:45:33.729 [Test worker] INFO com.t1.snezhko.kafka.KafkaConsumer -- Receive message payload json from topic t1_demo_transaction_accept
+22:45:33.745 [Test worker] INFO com.t1.snezhko.kafka.KafkaConsumer -- Message response jsonwas sent into topic t1_demo_transaction_result
+22:45:33.766 [Test worker] INFO com.t1.snezhko.kafka.KafkaConsumer -- Receive message {invalid json} from topic t1_demo_transaction_accept
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.controllers.CheckClientControllerIntegrationTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2025-06-19T19:45:24.547Z" hostname="DESKTOP-MNGQN6P" time="0.819">
+  <properties/>
+  <testcase name="shouldReturnBlackListedFalse_whenLastUUIDCharIsOdd()" classname="org.example.controllers.CheckClientControllerIntegrationTest" time="0.75"/>
+  <testcase name="shouldReturnBadRequest_whenAccountIdIsMissing()" classname="org.example.controllers.CheckClientControllerIntegrationTest" time="0.027"/>
+  <testcase name="shouldReturnBadRequest_whenClientIdIsMissing()" classname="org.example.controllers.CheckClientControllerIntegrationTest" time="0.009"/>
+  <testcase name="shouldHandleVeryLongUUIDsGracefully()" classname="org.example.controllers.CheckClientControllerIntegrationTest" time="0.01"/>
+  <testcase name="shouldReturnBadRequest_whenClientIdIsInvalid()" classname="org.example.controllers.CheckClientControllerIntegrationTest" time="0.008"/>
+  <testcase name="shouldReturnBlackListedTrue_whenLastUUIDCharIsEven()" classname="org.example.controllers.CheckClientControllerIntegrationTest" time="0.01"/>
+  <system-out><![CDATA[22:45:22.482 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [org.example.controllers.CheckClientControllerIntegrationTest]: CheckClientControllerIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:45:22.598 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration org.example.CheckClientApplication for test class org.example.controllers.CheckClientControllerIntegrationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.5)
+
+2025-06-19T22:45:23.005+03:00  INFO 13928 --- [    Test worker] e.c.CheckClientControllerIntegrationTest : Starting CheckClientControllerIntegrationTest using Java 21.0.5 with PID 13928 (started by User in D:\Leva\IT\T1\OpenSchool_2025\task1\Task1_OpenSchool_T1_2025\check-client-service)
+2025-06-19T22:45:23.021+03:00  INFO 13928 --- [    Test worker] e.c.CheckClientControllerIntegrationTest : The following 1 profile is active: "test"
+2025-06-19T22:45:23.884+03:00  INFO 13928 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2025-06-19T22:45:23.899+03:00  INFO 13928 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-19T22:45:23.899+03:00  INFO 13928 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-19T22:45:23.953+03:00  INFO 13928 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-19T22:45:23.953+03:00  INFO 13928 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 920 ms
+2025-06-19T22:45:24.532+03:00  INFO 13928 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 56161 (http) with context path '/'
+2025-06-19T22:45:24.548+03:00  INFO 13928 --- [    Test worker] e.c.CheckClientControllerIntegrationTest : Started CheckClientControllerIntegrationTest in 1.834 seconds (process running for 2.926)
+2025-06-19T22:45:25.186+03:00  INFO 13928 --- [o-auto-1-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-19T22:45:25.186+03:00  INFO 13928 --- [o-auto-1-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-06-19T22:45:25.186+03:00  INFO 13928 --- [o-auto-1-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-06-19T22:45:25.208+03:00  INFO 13928 --- [o-auto-1-exec-2] o.e.services.CheckClientServiceImpl      : Client 00000000-0000-0000-0000-000000000003 has black list checking result - false
+2025-06-19T22:45:25.303+03:00  WARN 13928 --- [o-auto-1-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'account-id' for method parameter type String is not present]
+2025-06-19T22:45:25.319+03:00  WARN 13928 --- [o-auto-1-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'client-id' for method parameter type String is not present]
+2025-06-19T22:45:25.335+03:00  WARN 13928 --- [o-auto-1-exec-3] o.e.e.GlobalExceptionHandler             : Global exception handler caught IllegalArgumentException with message: UUID string too large
+2025-06-19T22:45:25.355+03:00  WARN 13928 --- [o-auto-1-exec-6] o.e.e.GlobalExceptionHandler             : Global exception handler caught IllegalArgumentException with message: Invalid UUID string: not-a-uuid
+2025-06-19T22:45:25.361+03:00  INFO 13928 --- [o-auto-1-exec-5] o.e.services.CheckClientServiceImpl      : Client 00000000-0000-0000-0000-000000000002 has black list checking result - true
+]]></system-out>
+  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build what is described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\User\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.15.11\a38b16385e867f59a641330f0362ebe742788ed8\byte-buddy-agent-1.15.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

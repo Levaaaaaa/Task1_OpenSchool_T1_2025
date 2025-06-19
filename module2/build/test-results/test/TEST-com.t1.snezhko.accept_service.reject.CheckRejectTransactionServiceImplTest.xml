@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.t1.snezhko.accept_service.reject.CheckRejectTransactionServiceImplTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-06-19T19:45:33.365Z" hostname="DESKTOP-MNGQN6P" time="0.006">
+  <properties/>
+  <testcase name="whenTransactionAmountEqualToBalance_thenNotRejected()" classname="com.t1.snezhko.accept_service.reject.CheckRejectTransactionServiceImplTest" time="0.001"/>
+  <testcase name="whenTransactionAmountLessThanBalance_thenNotRejected()" classname="com.t1.snezhko.accept_service.reject.CheckRejectTransactionServiceImplTest" time="0.001"/>
+  <testcase name="whenTransactionAmountGreaterThanBalance_thenRejected()" classname="com.t1.snezhko.accept_service.reject.CheckRejectTransactionServiceImplTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

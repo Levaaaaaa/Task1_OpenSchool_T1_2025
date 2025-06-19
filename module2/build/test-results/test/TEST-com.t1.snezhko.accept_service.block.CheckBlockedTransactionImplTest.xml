@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.t1.snezhko.accept_service.block.CheckBlockedTransactionImplTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2025-06-19T19:45:33.281Z" hostname="DESKTOP-MNGQN6P" time="0.079">
+  <properties/>
+  <testcase name="whenEqualToLimitTransactions_thenNotBlocked()" classname="com.t1.snezhko.accept_service.block.CheckBlockedTransactionImplTest" time="0.061"/>
+  <testcase name="whenExactlyAtTTL_thenNotRemoved()" classname="com.t1.snezhko.accept_service.block.CheckBlockedTransactionImplTest" time="0.002"/>
+  <testcase name="whenOldTransactionsOutsideTTL_thenNotBlocked()" classname="com.t1.snezhko.accept_service.block.CheckBlockedTransactionImplTest" time="0.002"/>
+  <testcase name="whenFewerThanLimitTransactions_thenNotBlocked()" classname="com.t1.snezhko.accept_service.block.CheckBlockedTransactionImplTest" time="0.005"/>
+  <testcase name="whenMoreThanLimitTransactions_thenBlocked()" classname="com.t1.snezhko.accept_service.block.CheckBlockedTransactionImplTest" time="0.003"/>
+  <testcase name="whenNoPreviousTransactions_thenNotBlocked()" classname="com.t1.snezhko.accept_service.block.CheckBlockedTransactionImplTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
