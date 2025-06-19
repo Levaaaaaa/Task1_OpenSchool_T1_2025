@@ -18,7 +18,7 @@ public class CheckClientController {
     private CheckClientService checkClientService;
 
     @GetMapping("/api/v1/clients/check")
-    public ResponseEntity<CheckClientResponse> checkClient(@RequestParam("client-id") String clientId, @RequestParam("account-id") String accountId) {
+    public ResponseEntity<CheckClientResponse> checkClient(@RequestParam("client-id")  String clientId, @RequestParam("account-id") String accountId) {
         CheckClientRequest request = CheckClientRequest.builder()
                 .clientId(UUID.fromString(clientId))
                 .accountId(UUID.fromString(accountId))

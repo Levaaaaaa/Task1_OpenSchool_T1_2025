@@ -27,8 +27,13 @@ dependencies {
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
 
+    //TEST
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.5.0'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.mockito:mockito-core'
+    testImplementation 'org.wiremock:wiremock:3.13.1'
+    testImplementation 'org.springframework.security:spring-security-test:6.5.1'
 }
 
 test {

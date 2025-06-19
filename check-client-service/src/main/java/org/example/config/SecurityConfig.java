@@ -4,6 +4,7 @@ import io.jsonwebtoken.security.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
@@ -15,6 +16,7 @@ import javax.crypto.spec.SecretKeySpec;
 import static io.jsonwebtoken.SignatureAlgorithm.HS256;
 
 @Configuration
+@Profile("!test")
 public class SecurityConfig {
     @Value("${spring.security.oauth2.resourceserver.jwt.secret-key}")
     private String secretKey;
