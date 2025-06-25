@@ -7,6 +7,7 @@ import com.t1.snezhko.task1.core.client.dto.ClientDTO;
 import com.t1.snezhko.task1.core.transaction.TransactionStatus;
 import com.t1.snezhko.task1.core.transaction.dto.CreateTransactionRequest;
 import com.t1.snezhko.task1.core.transaction.dto.TransactionResponse;
+import com.t1.snezhko.task1.prometheus.LockMetricService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,6 +34,9 @@ class ArrestAccountServiceImpl implements ArrestAccountService{
     @Autowired
     private AccountCrudService accountCrudService;
 
+    @Autowired
+    private LockMetricService lockMetricService;
+
     @Override
     public TransactionResponse checkAccountAndArrest(ClientDTO client, TransactionResponse response) {
 
@@ -54,6 +58,7 @@ class ArrestAccountServiceImpl implements ArrestAccountService{
             response.setStatus(TransactionStatus.REJECTED);
             accountCrudService.updateStatus(account.getId(), AccountStatus.ARRESTED);
             log.info("Account " + account.getId() + " was arrested successfully!");
+            lockMetricService.incrementArrestedAccount();
             return response;
         }
 

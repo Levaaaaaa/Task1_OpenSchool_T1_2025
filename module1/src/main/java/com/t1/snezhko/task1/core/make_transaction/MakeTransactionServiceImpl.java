@@ -20,6 +20,7 @@ import com.t1.snezhko.task1.core.transaction.dto.TransactionResponse;
 import com.t1.snezhko.task1.core.transaction.dto.serializers.AcceptTransactionRequestSerializer;
 import com.t1.snezhko.task1.core.transaction.services.crud.TransactionCrudService;
 import com.t1.snezhko.task1.kafka.KafkaProducer;
+import com.t1.snezhko.task1.prometheus.LockMetricService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,9 @@ class MakeTransactionServiceImpl implements MakeTransactionService {
 
     @Autowired
     private ArrestAccountService arrestAccountService;
+
+    @Autowired
+    private LockMetricService lockMetricService;
 
     private static final String TRANSACTION_ACCEPT_TOPIC = "t1_demo_transaction_accept";
 
@@ -101,6 +105,7 @@ class MakeTransactionServiceImpl implements MakeTransactionService {
 
         if (checkClientResponse.isBlackListed()) {
             clientService.updateClientStatus(checkClientRequest.getClientId(), ClientStatus.BLOCKED);
+            lockMetricService.incrementBlockedClients();
             accountCrudService.updateStatus(checkClientRequest.getAccountId(), AccountStatus.BLOCKED);
             transactionCrudService.updateTransactionStatus(transactionId, TransactionStatus.REJECTED);
             log.info("Client " + checkClientRequest.getClientId() + " was BLOCKED!");

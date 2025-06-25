@@ -22,8 +22,14 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
+    //TEST
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.5.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-webflux:3.5.3'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.mockito:mockito-core'
+    testImplementation 'io.projectreactor:reactor-test:3.8.0-M4'
+    testImplementation 'com.github.tomakehurst:wiremock-standalone:3.0.1'
 }
 
 test {

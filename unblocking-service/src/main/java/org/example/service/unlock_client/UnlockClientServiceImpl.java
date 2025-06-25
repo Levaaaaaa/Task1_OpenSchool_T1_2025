@@ -10,11 +10,13 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 class UnlockClientServiceImpl implements UnlockClientService{
     @Autowired
-    private final WebClient webClient;
+    private WebClient webClient;
+
+    @Value("${app.unlock.host}")
+    private String HOST_NAME;
 
     @Value("${app.unlock.url.client-url}")
     private String BASE_URL;
@@ -23,7 +25,7 @@ class UnlockClientServiceImpl implements UnlockClientService{
     @Override
     public void unlockClient(UUID clientId) {
         webClient.put()
-                .uri(BASE_URL + clientId.toString())
+                .uri("http://" + HOST_NAME+BASE_URL + clientId.toString())
                 .retrieve()
                 .toBodilessEntity()
                 .subscribe(

@@ -1,0 +1,6 @@
+app:
+  unlock:
+    host: localhost:8089
+    url:
+      account-url: /unlock/account/
+      client-url: /unlock/client/
