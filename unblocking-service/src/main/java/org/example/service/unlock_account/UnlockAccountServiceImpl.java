@@ -15,13 +15,16 @@ class UnlockAccountServiceImpl implements UnlockAccountService{
     @Autowired
     private WebClient webClient;
 
+    @Value("${app.unlock.host}")
+    private String HOST_NAME;
+
     @Value("${app.unlock.url.account-url}")
     private String BASE_URL;
 
     @Override
     public void unlockAccount(UUID accountId) {
         webClient.put()
-                .uri(BASE_URL + accountId.toString())
+                .uri("http://" + HOST_NAME + BASE_URL + accountId.toString())
                 .retrieve()
                 .toBodilessEntity()
                 .subscribe(
