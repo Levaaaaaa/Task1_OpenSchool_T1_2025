@@ -38,7 +38,8 @@ class UnlockClientServiceImplTest {
     @BeforeEach
     void setUp() {
         // Устанавливаем BASE_URL вручную
-        ReflectionTestUtils.setField(unlockClientService, "BASE_URL", "http://localhost/unlock/");
+        ReflectionTestUtils.setField(unlockClientService, "HOST_NAME", "localhost");
+        ReflectionTestUtils.setField(unlockClientService, "BASE_URL", "/unlock/");
     }
 
     @Test
@@ -48,7 +49,7 @@ class UnlockClientServiceImplTest {
         when(webClient.put()).thenReturn(requestBodyUriSpec);
         when(requestBodyUriSpec.uri(anyString())).thenReturn(requestBodyUriSpec);
         when(requestBodyUriSpec.retrieve()).thenReturn(responseSpec);
-  //      when(requestHeadersSpec.retrieve()).thenReturn(responseSpec);
+        //when(requestHeadersSpec.retrieve()).thenReturn(responseSpec);
         when(responseSpec.toBodilessEntity()).thenReturn(Mono.just(ResponseEntity.ok().build()));
 
         unlockClientService.unlockClient(clientId);

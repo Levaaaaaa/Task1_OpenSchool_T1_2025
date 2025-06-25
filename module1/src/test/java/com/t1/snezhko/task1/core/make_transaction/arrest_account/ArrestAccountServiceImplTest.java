@@ -7,6 +7,7 @@ import com.t1.snezhko.task1.core.client.ClientStatus;
 import com.t1.snezhko.task1.core.client.dto.ClientDTO;
 import com.t1.snezhko.task1.core.transaction.TransactionStatus;
 import com.t1.snezhko.task1.core.transaction.dto.TransactionResponse;
+import com.t1.snezhko.task1.prometheus.LockMetricService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,6 +33,9 @@ class ArrestAccountServiceImplTest {
 
     @Mock
     private AccountCrudService accountCrudService;
+
+    @Mock
+    private LockMetricService lockMetricService;
 
     @BeforeEach
     void setup() throws Exception {

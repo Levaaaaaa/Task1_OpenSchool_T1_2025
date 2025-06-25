@@ -25,7 +25,7 @@ class UnlockClientServiceImpl implements UnlockClientService{
     @Override
     public void unlockClient(UUID clientId) {
         webClient.put()
-                .uri("http://" + HOST_NAME+BASE_URL + clientId.toString())
+                .uri("http://" + HOST_NAME +BASE_URL + clientId.toString())
                 .retrieve()
                 .toBodilessEntity()
                 .subscribe(

@@ -16,6 +16,7 @@ import com.t1.snezhko.task1.core.transaction.dto.TransactionResponse;
 import com.t1.snezhko.task1.core.transaction.dto.serializers.AcceptTransactionRequestSerializer;
 import com.t1.snezhko.task1.core.transaction.services.crud.TransactionCrudService;
 import com.t1.snezhko.task1.kafka.KafkaProducer;
+import com.t1.snezhko.task1.prometheus.LockMetricService;
 import org.apache.kafka.clients.ClientResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,6 +62,9 @@ class MakeTransactionServiceImplTest {
 
     @Mock
     private ArrestAccountService arrestAccountService;
+
+    @Mock
+    private LockMetricService lockMetricService;
 
     private CreateTransactionRequest request;
     private TransactionResponse transactionResponse;

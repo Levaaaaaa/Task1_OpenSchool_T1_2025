@@ -37,7 +37,8 @@ class UnlockAccountServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        ReflectionTestUtils.setField(unlockAccountService, "BASE_URL", "http://localhost/unlock/account/");
+        ReflectionTestUtils.setField(unlockAccountService, "BASE_URL", "/unlock/account/");
+        ReflectionTestUtils.setField(unlockAccountService, "HOST_NAME", "localhost");
     }
 
     @Test
